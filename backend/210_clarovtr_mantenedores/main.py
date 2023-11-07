@@ -23,7 +23,8 @@ entity_definitions = {
         "activo": int,
         "created_at": "timestamp",
         "updated_at": "timestamp",
-        "deleted_at": "timestamp"
+        "deleted_at": "timestamp",
+        "id": int
 
     },
     "contact_center": {
@@ -79,7 +80,8 @@ def return_entidad_get(datas, fields, entity):
                 "password": data[3],
                 "activo": data[4],
                 "created_at": format_date_crud(data[5]),
-                "updated_at": format_date_crud(data[6])}
+                "updated_at": format_date_crud(data[6]),
+                "id": data[8]}
 
             if data[7] is not None:
                 record["deleted_at"] = format_date_crud(data[7])
@@ -120,7 +122,11 @@ def return_entidad_get(datas, fields, entity):
 
 
 def return_entidad_post(data, fields, entity):
+    print(fields)
     fields = extract_keys(fields)
+    if entity == "usuario" and "id" in fields:
+        fields.remove('id')
+        
     if 'deleted_at' in fields:
         fields.remove('deleted_at')
     timestamp = datetime.datetime.fromtimestamp(
@@ -143,6 +149,7 @@ def return_entidad_post(data, fields, entity):
             data['activo'],
             timestamp,
             timestamp)
+    
     elif entity == "contact_center":
         data_insert = (
             data['id_tipo'],
@@ -199,7 +206,7 @@ def return_update_data(data, id_value, entity, fields):
             "password": data['password'],
             "activo": data['activo'],
             "updated_at": timestamp,
-            "deleted_at": timestamp
+            "deleted_at": None
         }
     elif entity == "contact_center":
         data = {
@@ -208,7 +215,7 @@ def return_update_data(data, id_value, entity, fields):
             "nombre": data['nombre'],
             "razon_social": data['razon_social'],
             "updated_at": timestamp,
-            "deleted_at": timestamp
+            "deleted_at": None
         }
     elif entity =="regla":
         data = {
@@ -222,7 +229,7 @@ def return_update_data(data, id_value, entity, fields):
             "activa": data['activa'],
             "created_at": timestamp,
             "updated_at": timestamp,
-            "deleted_at": timestamp
+            "deleted_at": None
         }
     return update_data(entity, id_value, data, fields)
 

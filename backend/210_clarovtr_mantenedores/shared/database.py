@@ -295,6 +295,7 @@ def update_data(entidad, id, data, fields):
 	print(data)
 	print(fields)
 	keys = ', '.join(extract_keys_and_values(data, fields))
+	print(f"keys :{keys}")
 	query = f"UPDATE {entidad} SET {keys} WHERE id = {id};"
 	print(query)
 	try:

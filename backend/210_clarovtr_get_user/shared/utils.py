@@ -1,5 +1,4 @@
 import uuid
-import bcrypt
 from datetime import datetime
 
 
@@ -22,18 +21,5 @@ def format_date_crud(date):
 def extract_keys(dictionary):
     return [key for key in dictionary]
 
-def encript_password(password):
-    password_bytes = password.encode("utf-8")
-    return bcrypt.hashpw(password_bytes, bcrypt.gensalt()).decode("utf-8")
-
-def validate_password_hash(password):
-    password_bytes = password.encode("utf-8")
-    return bcrypt.checkpw(password_bytes,  bcrypt.hashpw(password_bytes, bcrypt.gensalt()))
-
-# def extract_keys_and_values(data, fields):
-#     return [f"{key} = '{data[key]}'" for key in fields]
-
 def extract_keys_and_values(data, fields):
-    return [f"{key} = '{data[key]}'" if data[key] is not None else f"{key} = Null" for key in fields]
-
-
+    return [f"{key} = '{data[key]}'" for key in fields]
