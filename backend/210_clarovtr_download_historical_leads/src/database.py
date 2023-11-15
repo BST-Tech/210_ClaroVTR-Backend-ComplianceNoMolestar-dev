@@ -71,4 +71,22 @@ def get_data_by_upload(codigo_carga):
 		print(f"Error general: {e}")
 	finally:
 		db.close_connection()
-    
+
+def get_element_by_upload_code(codigo_carga):
+    query = '''
+    select lc.codigo_carga, lc.created_at, u.nombre ||' ' ||u.apellidos as usuario, lc.pcs_cliente, lc.en_nomolestar, lc.en_cooler  from lead_carga lc
+    join perfil_usuario pu on lc.id_usuario = pu.id 
+    join usuario u on pu.id_usuario = u.id where lc.codigo_carga = %s;'''
+	#query = "select * from lead_carga lc where lc.codigo_carga = %s;"
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query, codigo_carga)
+            if results:
+                return results
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
