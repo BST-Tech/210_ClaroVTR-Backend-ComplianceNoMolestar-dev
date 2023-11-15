@@ -57,11 +57,15 @@ class DatabaseConnection:
 			print("No hay una conexión activa para cerrar.")
 
 def get_data_by_upload(codigo_carga):
-	query = "select lc.id, lc.id_lead, lc.id_empresa_ct, lc.id_canal, lc.en_cooler, lc.en_nomolestar, lc.created_at, lc.id_usuario, lc.pcs_cliente from lead_carga lc where lc.codigo_carga = %s;"
+	query = """select 
+	lc.id, lc.id_lead, lc.id_empresa_ct, lc.id_canal, lc.en_cooler, lc.en_nomolestar, lc.created_at, u.nombre||' '||u.apellidos as usuario, lc.pcs_cliente from lead_carga lc join perfil_usuario pu 
+	on lc.id_usuario = pu.id join usuario u
+	on pu.id_usuario = u.id
+	where lc.codigo_carga = %s;
+	"""
 	try:
 		db = DatabaseConnection()
 		if db.connect():
-			print("conecto")
 			results = db.execute_query(query, codigo_carga)
 			if results:
 				return results
