@@ -9,8 +9,8 @@ def convert_date(value):
     return datetime.strptime(value, '%d-%m-%Y').strftime('%d-%m-%Y %H:%M:%S')
 
 def format_date(date):
-    fecha_obj = datetime.strptime(date, '%d-%m-%Y')
-    return fecha_obj.strftime('%Y-%m-%d')
+    fecha_obj = datetime.strptime(date, '%d-%m-%Y %H:%M:%S')
+    return fecha_obj.strftime('%Y-%m-%d %H:%M:%S')
 
 
 

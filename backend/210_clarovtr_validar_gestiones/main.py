@@ -23,17 +23,17 @@ def validar_numero(value):
         return True
     else:
         return False
-def validate_tipificaciones(value):
-    result = get_tipificaciones(value)
+def validate_tipificaciones(value, empresa_ct):
+    result = get_tipificaciones(value, empresa_ct)
     if result is not None:
         return result[0][0]
     else:
         return None
 
-def validate_information(row_value):
+def validate_information(row_value, empresa_ct):
     invalid_rules = []
     tipificaciones = []
-    tipificaciones.append(validate_tipificaciones(row_value['cod_tipificacion']))
+    tipificaciones = validate_tipificaciones(row_value['cod_tipificacion'], empresa_ct)
     if row_value['canal_o_nombre_EPS'] == "":
         invalid_rules.append("Canal o nombre EPS no presente")
     if not validate_pcs(row_value['pcs_salida']):
@@ -44,7 +44,7 @@ def validate_information(row_value):
         invalid_rules.append("Fecha llamada no coincide con formato establecido")
     if row_value['campania'] in ('', None):
         invalid_rules.append("Campaña vacia y/o con datos nulos")
-    if tipificaciones is None or row_value['cod_tipificacion'] not in tipificaciones:
+    if len(tipificaciones) == 0 or row_value['cod_tipificacion'] not in tipificaciones:
         invalid_rules.append("Tipificacion no existe o no encontrada")
     if not validar_numero(row_value['duracion_en_segundos']):
         invalid_rules.append("Duracion en segundos no es numerico")
@@ -67,13 +67,18 @@ def run(event, context):
     error_tipificacion = []
     data_user = get_user_by_id(event['uid'])
     user_data_db = get_data_user(data_user)
+    id_empresa_ct = user_data_db[0][1]
+    data_null = None
+    id_canal = event['id_canal']
     
     for data in datas:
-        value_return = validate_information(data)
+        value_return = validate_information(data,id_empresa_ct )
         if value_return['status']:
-            tipificacion = get_tipificaciones(data['cod_tipificacion'])
+            tipificacion = get_tipificaciones(data['cod_tipificacion'],id_empresa_ct)
+            id_tipificacion = tipificacion[0][1]
+
             data_valid.append(( 
-                tipificacion[0][1],
+                id_tipificacion,
                 data['pcs_salida'][-9:],
                 data['pcs_cliente'][-9:], 
                 format_date(data['fechallamada']), 
@@ -114,7 +119,8 @@ def run(event, context):
                 'data': data_error
             }
     elif len(data_error) == 0:
-        insert_gestiones(data_valid)
+        result = insert_gestiones(data_valid)
+        print(result)
         return {
             'statusCode': 200,
             'message': "Archivo cargado correctamente",
