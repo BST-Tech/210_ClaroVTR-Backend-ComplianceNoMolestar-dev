@@ -87,9 +87,11 @@ def get_rol_user(email):
     finally:
         db.close_connection()
         
-def get_user_data_email(email):
-    query = f'''select pu.id_usuario from perfil_usuario pu join usuario u 
-    on pu.id_usuario = u.id where u.email = '{email}';'''
+def get_user_data_email(user_id):
+    # query = f'''select pu.id_usuario from perfil_usuario pu join usuario u 
+    # on pu.id_usuario = u.id where u.email = '{email}';'''
+    query = f'''select u.email from perfil_usuario pu join usuario u 
+    on pu.id_usuario = u.id where pu.id = '{user_id}';'''
     try:
         db = DatabaseConnection()
         if db.connect():

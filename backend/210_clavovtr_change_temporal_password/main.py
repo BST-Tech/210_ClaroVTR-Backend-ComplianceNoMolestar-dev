@@ -12,17 +12,17 @@ def run(event, context):
     print(f"data_event {data_event}")
     email_user = get_user_by_id(uid)
     rol = get_rol_user(email_user)
-    email_to_change = data_event['email']
+    user_id = data_event['id']
     secret_value = get_value_secret()
-    error = ""
     new_password = data_event['new_password']
-    v = validate_password(new_password)
-    print(v)
-    if v:
+    validate_pass = validate_password(new_password)
+    print(validate_pass)
+    if validate_pass:
         if rol in roles_admin:
             print("si puede cambiar la clave")
-            result = get_user_data_email(email_to_change)
-            if result:
+            email_to_change = get_user_data_email(user_id)
+            print(email_to_change)
+            if email_to_change:
                 result_cognito = validate_exist_on_cognito(email_to_change,secret_value)
                 if result_cognito:
                     print("usuario existe en cognito")
