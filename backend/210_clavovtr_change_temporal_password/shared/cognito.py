@@ -10,9 +10,10 @@ def get_user_by_id(uid):
         )
     return [value['Value'] for value in user_data['UserAttributes'] if value['Name'] == 'email'][0]
 
-def change_passowrd_cognito(username, new_password, secret_value):
+def change_passowrd_cognito(username, secret_value):
     client = boto3.client('cognito-idp')
-    user_pool_id = secret_value['user_pool_id']
+    user_pool_id = secret_value.get('user_pool_id')
+    new_password = secret_value.get('PASSWORD_TEMPORAL')
     print("cambiar contraseña")
     try:
         response = client.admin_set_user_password(
@@ -32,8 +33,6 @@ def change_passowrd_cognito(username, new_password, secret_value):
                 "statusCode": 500,
                 "message":  f"No se pudo cambiar la contraseña Error {e}"
             }
-   
-        
 
 def validate_exist_on_cognito(username, secret_value):
     client = boto3.client('cognito-idp', region_name=secret_value['aws_region'])
