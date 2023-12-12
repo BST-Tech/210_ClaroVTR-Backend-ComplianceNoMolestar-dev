@@ -43,7 +43,6 @@ def create_user_on_userpool(username, password, name , family_name, secret_value
             AuthParameters={
                 'USERNAME': username,
                 'PASSWORD': password,
-                #'SECRET_HASH': 'njv613e8386aqksg9aues3kfjr6noj1ct1kq6vuj89vqa3cejku',
             }
         )
         print(auth_response)
@@ -58,6 +57,24 @@ def create_user_on_userpool(username, password, name , family_name, secret_value
                 },
                 Session=auth_response['Session']
             )
+            try:
+                response = client.admin_set_user_password(
+                    UserPoolId=secret_value['user_pool_id'],
+                    Username=username,
+                    Password=password,
+                    Permanent=False
+                )
+                status_code_response = response.get('ResponseMetadata').get('HTTPStatusCode')
+                if status_code_response == 200:
+                    return {
+                        "statusCode": status_code_response,
+                        "message": "Usuario creado correctamente"
+                    }
+            except Exception as e:
+                return {
+                        "statusCode": 500,
+                        "message":  f"No se pudo crear el usuario {e}"
+                    }
             return True
     except Exception as e:
         print("Se ha producido un error:", str(e))

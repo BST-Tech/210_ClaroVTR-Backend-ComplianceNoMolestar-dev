@@ -8,7 +8,6 @@ from src.utils import validate_password
 def run(event, context):
     uid = event['uid']
     data_event = event['data']
-    print(f"data_event {data_event}")
     email_user = get_user_by_id(uid)
     rol = get_rol_user(email_user)
     user_id = data_event['id']
