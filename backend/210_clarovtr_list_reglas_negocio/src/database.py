@@ -56,18 +56,14 @@ class DatabaseConnection:
 		else:
 			print("No hay una conexión activa para cerrar.")
 
-def get_contact_cernter_list(uid):
+def get_tipificaciones_from_api(uid):
     email = get_user_by_id(uid)
-    print(f"email {email}")
     query = '''
-	select ecc.id, cc.nombre from perfil_usuario pu join empresa_contact_center ecc 
-on pu.id_empresa_ct = ecc.id join contact_center cc 
-on ecc.id_contact_center = cc.id join usuario u
-on pu.id_usuario = u.id join empresa e
-on e.id = ecc.id_empresa where ecc.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
-join perfil_usuario pu on ecc.id = pu.id_empresa_ct
-join usuario u on pu.id_usuario = u.id 
-where u.email =  %s)'''
+	select t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, ecc.id_contact_center from tipificacion t join empresa_contact_center ecc
+	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
+	on pu.id_empresa_ct = ecc.id join usuario u 
+	on u.id = pu.id_usuario
+	where u.email =%s'''
     try:
         db = DatabaseConnection()
         if db.connect():
