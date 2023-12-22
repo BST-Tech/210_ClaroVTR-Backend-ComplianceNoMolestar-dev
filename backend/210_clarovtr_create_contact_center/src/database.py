@@ -38,7 +38,7 @@ class DatabaseConnection:
 				cursor.execute(query, (params,))
 				result = cursor.fetchall()
 				cursor.close()
-				return result if cursor.rowcount == 1 else "Error al insertar el registro"
+				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
 				return f"Error al ejecutar la consulta: {e}"
@@ -46,7 +46,7 @@ class DatabaseConnection:
 			print("No se ha establecido una conexión a la base de datos.")
 			return None
 
-	def execute_query_usuario(self, query, params:str=None):
+	def execute_without_return(self, query, params:str=None):
 		if self.connection is not None:
 			try:
 				cursor = self.connection.cursor()
@@ -64,7 +64,7 @@ class DatabaseConnection:
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			print("Conexión a la base de datos cerrada.")
+			# print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
@@ -87,44 +87,7 @@ def get_id_ct(uid):
         return f"Error general: {e}"
     finally:
         db.close_connection()
-        
-def create_user(new_data):
-    nombre = new_data.get('nombre')
-    apellidos = new_data.get('apellido')
-    email = new_data.get('email')
-    activo = new_data.get('activo')
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    query_user = f"""INSERT INTO public.usuario 
-    (nombre, apellidos, email, activo, created_at, updated_at)
-    VALUES('{nombre}', '{apellidos}', '{email}', {activo},'{timestamp}','{timestamp}') returning id;
-    """
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            return db.execute_query(query_user)[0][0]
-    except Exception as e:
-        return f"Error general: {e}"
-    finally:
-        db.close_connection()
-    
 
-def create_perfil_usuario(new_data, id_user, id_ct):
-    rol = new_data.get('rol')
-    activo = new_data.get('activo')
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    
-    query_perfil_usuario = f"""INSERT INTO public.perfil_usuario
-    (id_usuario, id_empresa_ct, id_rol, activo, created_at, updated_at)
-    VALUES({id_user}, {id_ct}, {rol}, {activo}, '{timestamp}', '{timestamp}');
-    """
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            return db.execute_query_usuario(query_perfil_usuario)
-    except Exception as e:
-        return f"Error general: {e}"
-    finally:
-        db.close_connection()
         
 def get_rol_user(email):
     query = f"""select r.nombre from perfil_usuario pu join usuario u on pu.id_usuario = u.id 
@@ -157,4 +120,56 @@ def get_user_data_email(user_id):
         print(f"Error general: {e}")
     finally:
         db.close_connection()
+
+def create_contact_center(new_data):
+    nombre = new_data.get('nombre')
+    razon_social = new_data.get('razon_social')
+    rut = new_data.get('rut')
+    tipo = new_data.get('tipo')
+    activo = new_data.get('activo')
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    query_user = f"""INSERT INTO public.contact_center (id_tipo, rut, nombre, razon_social, created_at, updated_at, activo)
+    VALUES('{tipo}', '{rut}', '{nombre}', '{razon_social}','{timestamp}','{timestamp}', '{activo}') returning id;
+    """
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            return db.execute_query(query_user)[0][0]
+    except Exception as e:
+        return f"Error general: {e}"
+    finally:
+        db.close_connection()
+        
+def get_exist_contactcenter(new_data):
+    rut = new_data.get('rut')
+    query_user = f"""select cc.id from contact_center cc where cc.rut = '{rut}';"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            return db.execute_query(query_user)
+    except Exception as e:
+        return f"Error general: {e}"
+    finally:
+        db.close_connection()
+    return None
+
+def create_empresa_contact_center(id_contact_center,new_data, email_user):
+    activo = new_data.get('activo')
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    query_user = f"""INSERT INTO public.empresa_contact_center 
+    (id_empresa, id_contact_center, activo, created_at)
+    VALUES((select e.id from perfil_usuario pu join usuario u on pu.id_usuario = u.id
+    join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
+    join empresa e on ecc.id_empresa = e.id
+    where u.email = '{email_user}'), {id_contact_center}, {activo}, '{timestamp}');
+    """
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            return db.execute_without_return(query_user)
+    except Exception as e:
+        return f"Error general: {e}"
+    finally:
+        db.close_connection()
     
+

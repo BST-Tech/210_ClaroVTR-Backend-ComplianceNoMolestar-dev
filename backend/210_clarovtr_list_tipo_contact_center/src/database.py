@@ -1,9 +1,12 @@
 import os
 import sys
+import time
+import datetime
 from sqlite3 import DatabaseError
 from shared.secret_manager import get_value_secret
 from shared.cognito import get_user_by_id
 import psycopg2
+
 
 class DatabaseConnection:
 	def connect(self):
@@ -55,48 +58,30 @@ class DatabaseConnection:
 			print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
+        
+def get_tipo_contact_center(uid):
+    # email = get_user_by_id(uid)
+#     query=f"""select distinct tcc.id, tcc.tipo_operador from perfil_usuario pu join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
+# join contact_center cc on ecc.id_contact_center = cc.id
+# join tipo_contact_center tcc ON cc.id_tipo = tcc.id
+# where ecc.id_empresa = (select distinct ecc.id_empresa  from empresa_contact_center ecc
+# join perfil_usuario pu on ecc.id = pu.id_empresa_ct
+# join usuario u on pu.id_usuario = u.id 
+# where u.email ='{email}');"""
+    query="""select tcc.id, tcc.tipo_operador from tipo_contact_center tcc;"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            return db.execute_query(query)
+    except Exception as e:
+        return f"Error general: {e}"
+    finally:
+        db.close_connection()
+    
+    
+    
+    
+    
+    
+ 
 
-def get_tipificaciones_from_api(uid, cc_id):
-    email = get_user_by_id(uid)
-    query = f"""
-	select t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, ecc.id_contact_center, t.activo from tipificacion t join empresa_contact_center ecc
-	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
-	on pu.id_empresa_ct = ecc.id join usuario u 
-	on u.id = pu.id_usuario
-	where u.email ='{email}' and ecc.id_contact_center = {cc_id}"""
-    print(query)
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            results = db.execute_query(query)
-            if results:
-                return results
-            else:
-                return None
-    except Exception as e:
-        print(f"Error general: {e}")
-    finally:
-        db.close_connection()
-        
-def get_id_empresa_ct(uid):
-    email = get_user_by_id(uid)
-    query = f"""
-	select ecc.id_contact_center from perfil_usuario pu join usuario u on pu.id_usuario = u.id
-join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
-where u.email = '{email}'"""
-    print(query)
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            results = db.execute_query(query)
-            if results:
-                print(results[0][0])
-                return results[0][0]
-            else:
-                return None
-    except Exception as e:
-        print(f"Error general: {e}")
-    finally:
-        db.close_connection()
-        
-        

@@ -1,6 +1,5 @@
-import os
-import sys
-from sqlite3 import DatabaseError
+import time
+import datetime
 from shared.secret_manager import get_value_secret
 from shared.cognito import get_user_by_id
 import psycopg2
@@ -48,6 +47,21 @@ class DatabaseConnection:
 			print("No se ha establecido una conexión a la base de datos.")
 			return None
 
+	def execute_update(self, query, params:str=None):
+		if self.connection is not None:
+			try:
+				cursor = self.connection.cursor()
+				cursor.execute(query, (params,))
+				cursor.close()
+				return "actualizada correctamente"
+			# except Exception as e:
+			except psycopg2.Error as e:
+				print(f"Error al ejecutar la consulta: {e}")
+				return None
+		else:
+			print("No se ha establecido una conexión a la base de datos.")
+			return None
+
 	def close_connection(self):
 		if self.connection is not None:
 			self.connection.commit()
@@ -56,41 +70,14 @@ class DatabaseConnection:
 		else:
 			print("No hay una conexión activa para cerrar.")
 
-def get_tipificaciones_from_api(uid, cc_id):
-    email = get_user_by_id(uid)
-    query = f"""
-	select t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, ecc.id_contact_center, t.activo from tipificacion t join empresa_contact_center ecc
-	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
-	on pu.id_empresa_ct = ecc.id join usuario u 
-	on u.id = pu.id_usuario
-	where u.email ='{email}' and ecc.id_contact_center = {cc_id}"""
-    print(query)
+def get_rol_user(email):
+    query = f"""select r.nombre from perfil_usuario pu join usuario u on pu.id_usuario = u.id 
+    join rol r on pu.id_rol = r.id where u.email = '{email}';"""
     try:
         db = DatabaseConnection()
         if db.connect():
             results = db.execute_query(query)
             if results:
-                return results
-            else:
-                return None
-    except Exception as e:
-        print(f"Error general: {e}")
-    finally:
-        db.close_connection()
-        
-def get_id_empresa_ct(uid):
-    email = get_user_by_id(uid)
-    query = f"""
-	select ecc.id_contact_center from perfil_usuario pu join usuario u on pu.id_usuario = u.id
-join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
-where u.email = '{email}'"""
-    print(query)
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            results = db.execute_query(query)
-            if results:
-                print(results[0][0])
                 return results[0][0]
             else:
                 return None
@@ -99,4 +86,37 @@ where u.email = '{email}'"""
     finally:
         db.close_connection()
         
+def get_user_data_email(user_id):
+    # query = f'''select pu.id_usuario from perfil_usuario pu join usuario u 
+    # on pu.id_usuario = u.id where u.email = '{email}';'''
+    query = f'''select u.email from perfil_usuario pu join usuario u 
+    on pu.id_usuario = u.id where pu.id = '{user_id}';'''
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query)
+            if results:
+                return results[0][0]
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
         
+def update_user_password_changed(email):
+    # Actualizar la fecha de que se realizo cambio de contraseña
+    # current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_time = datetime.datetime.fromtimestamp(
+        time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    query=f"""UPDATE public.usuario
+    set updated_at='{current_time}'
+    WHERE email = '{email}';"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            return db.execute_update(query)
+    except Exception as e:
+        return f"Error general: {e}"
+    finally:
+        db.close_connection()
