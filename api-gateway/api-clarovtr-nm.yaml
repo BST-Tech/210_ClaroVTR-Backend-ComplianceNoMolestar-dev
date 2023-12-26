@@ -3,10 +3,7 @@
   "info" : {
     "version" : "2023-12-21T20:34:57Z",
     "title" : "clarovtrNoMolestar"
-  },
-  "host" : "atrzdbcw2c.execute-api.us-east-1.amazonaws.com",
-  "basePath" : "/dev",
-  "schemes" : [ "https" ],
+  }, 
   "paths" : {
     "/authenticate" : {
       "post" : {
@@ -22,7 +19,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_migrateusers_to_cognito/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_migrateusers_to_cognito/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -50,7 +47,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_count_leads_cooler/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_count_leads_cooler/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -78,7 +75,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_create_contact_center/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_create_contact_center/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -106,7 +103,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_create_user/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_create_user/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -134,7 +131,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_delete_tipificacion/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_delete_tipificacion/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -162,7 +159,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_download_historical_leads/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_download_historical_leads/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -190,7 +187,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_mantenedores/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_mantenedores/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -218,7 +215,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_get_conctact_center/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_conctact_center/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -246,7 +243,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_get_historical_leads/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_historical_leads/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -274,7 +271,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_get_roles/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_roles/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -302,7 +299,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_session_registration/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_session_registration/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -330,7 +327,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_get_tipificacion_by_id/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificacion_by_id/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -358,7 +355,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_get_tipificaciones_list/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificaciones_list/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -386,7 +383,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_get_user/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_user/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -414,7 +411,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_get_users_list/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_users_list/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -442,7 +439,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_insert_tipificaciones/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_insert_tipificaciones/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -470,7 +467,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_list_contact_center/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_contact_center/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -498,7 +495,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_list_tipo_contact_center/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_tipo_contact_center/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -526,7 +523,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_password_reset/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_password_reset/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -554,7 +551,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_put_tipificacion/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_tipificacion/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -582,7 +579,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clavovtr_put_users/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_users/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -607,7 +604,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_last_login/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_last_login/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -635,7 +632,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_validar_gestiones/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_validar_gestiones/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -663,7 +660,7 @@
         "x-amazon-apigateway-integration" : {
           "contentHandling" : "CONVERT_TO_TEXT",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:140176884735:function:210_clarovtr_uploads_leads/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_uploads_leads/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -682,7 +679,7 @@
       "in" : "header",
       "x-amazon-apigateway-authtype" : "cognito_user_pools",
       "x-amazon-apigateway-authorizer" : {
-        "providerARNs" : [ "arn:aws:cognito-idp:us-east-1:140176884735:userpool/us-east-1_FGwZAvMY3" ],
+        "providerARNs" : [ "arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${AWS::Region}_FGwZAvMY3" ],
         "type" : "cognito_user_pools"
       }
     }
