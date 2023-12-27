@@ -1,12 +1,6 @@
-import os
-import sys
-import time
-import datetime
 from sqlite3 import DatabaseError
 from shared.secret_manager import get_value_secret
-from shared.cognito import get_user_by_id
 import psycopg2
-
 
 class DatabaseConnection:
 	def connect(self):
@@ -72,41 +66,35 @@ class DatabaseConnection:
 			self.connection.close()
 			print("Conexión a la base de datos cerrada.")
 		else:
-			print("No hay una conexión activa para cerrar.")
+			print("No hay una conexión activa para cerrar.")        
 
-def update_last_login_user(uid):
-    # Actualizar el ultimo login de un usuario a la hora actual
-    email = get_user_by_id(uid)
-    # current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    current_time = datetime.datetime.fromtimestamp(
-        time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    query=f"""
-    UPDATE public.perfil_usuario set last_login='{current_time}'
-		WHERE id = (select pu.id from perfil_usuario pu join usuario u on pu.id_usuario = u.id where u.email = '{email}' LIMIT 1 );"""
+def get_data_contact_center(email, id_ct):
+    query = f"""select pu.id, max(u.nombre) as nombre,
+	max(u.apellidos) as apellidos, max(pu.last_login) as last_login,
+	count(lc.id) as validaciones, max(cc.nombre) as contact_center,
+	max(cc.activo) as cc_activo
+from perfil_usuario pu
+join usuario u on pu.id_usuario = u.id
+join lead_carga lc on lc.id_usuario = u.id
+join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
+join contact_center cc on ecc.id_contact_center = cc.id
+where ecc.id_empresa = (
+	select distinct ecc.id_empresa from perfil_usuario pu join empresa_contact_center ecc 
+on pu.id_empresa_ct = ecc.id join usuario u 
+on pu.id_usuario = u.id where u.email = '{email}'
+	) and ecc.id_contact_center = {id_ct}
+	group by pu.id limit 1;""" 
     try:
         db = DatabaseConnection()
         if db.connect():
-            return db.execute_update(query)
+            results = db.execute_query(query)
+            print(results)
+            if results:
+                return results[0]
+            else:
+                return None
     except Exception as e:
-        return f"Error general: {e}"
+        print(f"Error general: {e}")
     finally:
         db.close_connection()
         
-        
-def list_data_contact_center(uid):
-	# Actualizar el ultimo login de un usuario a la hora actual
-    email = get_user_by_id(uid)
-    # current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    current_time = datetime.datetime.fromtimestamp(
-        time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    query=f"""
-    UPDATE public.perfil_usuario set last_login='{current_time}'
-		WHERE id = (select pu.id from perfil_usuario pu join usuario u on pu.id_usuario = u.id where u.email = '{email}' LIMIT 1 );"""
-    try:
-        db = DatabaseConnection()
-        if db.connect():
-            return db.execute_update(query)
-    except Exception as e:
-        return f"Error general: {e}"
-    finally:
-        db.close_connection()
