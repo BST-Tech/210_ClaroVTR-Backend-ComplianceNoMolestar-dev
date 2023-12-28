@@ -54,7 +54,7 @@ pipeline {
                         cd backend/210_clarovtr_session_registration && zip -r ../../210_clarovtr_session_registration.zip .
                     '''
                     sh '''
-                        cd backend/210_clarovtr_uploads_leads && zip -r ../../210_clarovtr_uploads_leads.zip .
+                        cd backend/210_clarovtr_upload_leads && zip -r ../../210_clarovtr_upload_leads.zip .
                     '''
                     sh '''
                         cd backend/210_clarovtr_validar_gestiones && zip -r ../../210_clarovtr_validar_gestiones.zip .
