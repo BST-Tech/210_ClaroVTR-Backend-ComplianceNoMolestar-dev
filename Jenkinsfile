@@ -161,7 +161,7 @@ pipeline {
     success {
       office365ConnectorSend webhookUrl: "${WEBHOOK_TEAMS}",
             color: '#00FF00',
-            factDefinitions: [[name: "Proyecto", template: "ClaroVTR: No Moleatar Backend"],
+            factDefinitions: [[name: "Proyecto", template: "ClaroVTR: No Molestar Backend"],
             [name: "Pipeline", template: "${env.JOB_NAME}"],
             [name: "Infraestructura", template: "Infraestructura IaC Backend"],
             [name: "Nro. de Ejecución", template: "${env.BUILD_NUMBER}"]],
@@ -171,7 +171,7 @@ pipeline {
     failure {
        office365ConnectorSend webhookUrl: "${WEBHOOK_TEAMS}",
             color: '#FF0000',
-            factDefinitions: [[name: "Proyecto", template: "ClaroVTR: No Moleatar Backend"],
+            factDefinitions: [[name: "Proyecto", template: "ClaroVTR: No Molestar Backend"],
             [name: "Pipeline", template: "${env.JOB_NAME}"],
             [name: "Infraestructura", template: "Infraestructura IaC Backend"],
             [name: "Nro. de Ejecución", template: "${env.BUILD_NUMBER}"]],
