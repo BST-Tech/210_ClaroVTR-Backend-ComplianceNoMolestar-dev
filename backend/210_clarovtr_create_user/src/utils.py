@@ -17,3 +17,16 @@ def make_data_to_insert(data_list, empresa_ct_id):
             data.get('estado')
         ))
     return data_list_to_db
+
+def get_numeric_value(tupla):
+    if isinstance(tupla,list) and len(tupla) == 1:
+        tupla = tupla[0]
+        if isinstance(tupla, tuple) and len(tupla) == 1:
+            elemento = tupla[0]
+            if isinstance(elemento, (int, float)):
+                return elemento
+            elif isinstance(elemento, str) and elemento.isdigit():
+                return int(elemento)
+    
+    # Retornar None si no se encuentra un valor numérico
+    return False

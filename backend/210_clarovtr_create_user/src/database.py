@@ -38,7 +38,7 @@ class DatabaseConnection:
 				cursor.execute(query, (params,))
 				result = cursor.fetchall()
 				cursor.close()
-				return result if cursor.rowcount == 1 else "Error al insertar el registro"
+				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
 				return f"Error al ejecutar la consulta: {e}"
@@ -64,7 +64,6 @@ class DatabaseConnection:
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
@@ -101,7 +100,7 @@ def create_user(new_data):
     try:
         db = DatabaseConnection()
         if db.connect():
-            return db.execute_query(query_user)[0][0]
+            return db.execute_query(query_user)
     except Exception as e:
         return f"Error general: {e}"
     finally:
