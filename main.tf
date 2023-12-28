@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
-resource "aws_lambda_function" "210_clarovtr_create_contact_center" {
+resource "aws_lambda_function" "clarovtr_create_contact_center" {
   function_name = "210_clarovtr_create_contact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -38,7 +38,7 @@ resource "aws_lambda_function" "210_clarovtr_create_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_create_user" {
+resource "aws_lambda_function" "clarovtr_create_user" {
   function_name = "210_clarovtr_create_user"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -57,7 +57,7 @@ resource "aws_lambda_function" "210_clarovtr_create_user" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_download_historical_leads" {
+resource "aws_lambda_function" "clarovtr_download_historical_leads" {
   function_name = "210_clarovtr_download_historical_leads"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -76,7 +76,7 @@ resource "aws_lambda_function" "210_clarovtr_download_historical_leads" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_get_historical_leads" {
+resource "aws_lambda_function" "clarovtr_get_historical_leads" {
   function_name = "210_clarovtr_get_historical_leads"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -95,7 +95,7 @@ resource "aws_lambda_function" "210_clarovtr_get_historical_leads" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_get_info_contact_center" {
+resource "aws_lambda_function" "clarovtr_get_info_contact_center" {
   function_name = "210_clarovtr_get_info_contact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -114,7 +114,7 @@ resource "aws_lambda_function" "210_clarovtr_get_info_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_get_user" {
+resource "aws_lambda_function" "clarovtr_get_user" {
   function_name = "210_clarovtr_get_user"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -133,7 +133,7 @@ resource "aws_lambda_function" "210_clarovtr_get_user" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_insert_tipificaciones" {
+resource "aws_lambda_function" "clarovtr_insert_tipificaciones" {
   function_name = "210_clarovtr_insert_tipificaciones"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -152,7 +152,7 @@ resource "aws_lambda_function" "210_clarovtr_insert_tipificaciones" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_last_login" {
+resource "aws_lambda_function" "clarovtr_last_login" {
   function_name = "210_clarovtr_last_login"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -171,7 +171,7 @@ resource "aws_lambda_function" "210_clarovtr_last_login" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_list_contact_center" {
+resource "aws_lambda_function" "clarovtr_list_contact_center" {
   function_name = "210_clarovtr_list_contact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -190,7 +190,7 @@ resource "aws_lambda_function" "210_clarovtr_list_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_list_contact_center_by_id" {
+resource "aws_lambda_function" "clarovtr_list_contact_center_by_id" {
   function_name = "210_clarovtr_list_contact_center_by_id"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -209,7 +209,7 @@ resource "aws_lambda_function" "210_clarovtr_list_contact_center_by_id" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_list_tipo_contact_center" {
+resource "aws_lambda_function" "clarovtr_list_tipo_contact_center" {
   function_name = "210_clarovtr_list_tipo_contact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -228,7 +228,7 @@ resource "aws_lambda_function" "210_clarovtr_list_tipo_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_put_contact_center" {
+resource "aws_lambda_function" "clarovtr_put_contact_center" {
   function_name = "210_clarovtr_put_contact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -247,7 +247,7 @@ resource "aws_lambda_function" "210_clarovtr_put_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_session_registration" {
+resource "aws_lambda_function" "clarovtr_session_registration" {
   function_name = "210_clarovtr_session_registration"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -266,7 +266,7 @@ resource "aws_lambda_function" "210_clarovtr_session_registration" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_uploads_leads" {
+resource "aws_lambda_function" "clarovtr_uploads_leads" {
   function_name = "210_clarovtr_uploads_leads"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -285,7 +285,7 @@ resource "aws_lambda_function" "210_clarovtr_uploads_leads" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_validar_gestiones" {
+resource "aws_lambda_function" "clarovtr_validar_gestiones" {
   function_name = "210_clarovtr_validar_gestiones"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -304,7 +304,7 @@ resource "aws_lambda_function" "210_clarovtr_validar_gestiones" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_password_reset" {
+resource "aws_lambda_function" "clavovtr_password_reset" {
   function_name = "210_clavovtr_password_reset"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -323,7 +323,7 @@ resource "aws_lambda_function" "210_clavovtr_password_reset" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_delete_tipificacion" {
+resource "aws_lambda_function" "clavovtr_delete_tipificacion" {
   function_name = "210_clavovtr_delete_tipificacion"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -342,7 +342,7 @@ resource "aws_lambda_function" "210_clavovtr_delete_tipificacion" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_get_conctact_center" {
+resource "aws_lambda_function" "clavovtr_get_conctact_center" {
   function_name = "210_clavovtr_get_conctact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -361,7 +361,7 @@ resource "aws_lambda_function" "210_clavovtr_get_conctact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_get_roles" {
+resource "aws_lambda_function" "clavovtr_get_roles" {
   function_name = "210_clavovtr_get_roles"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -380,7 +380,7 @@ resource "aws_lambda_function" "210_clavovtr_get_roles" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_get_tipificaciones_list" {
+resource "aws_lambda_function" "clavovtr_get_tipificaciones_list" {
   function_name = "210_clavovtr_get_tipificaciones_list"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -399,7 +399,7 @@ resource "aws_lambda_function" "210_clavovtr_get_tipificaciones_list" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_get_tipificacion_by_id" {
+resource "aws_lambda_function" "clavovtr_get_tipificacion_by_id" {
   function_name = "210_clavovtr_get_tipificacion_by_id"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -418,7 +418,7 @@ resource "aws_lambda_function" "210_clavovtr_get_tipificacion_by_id" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_get_users_list" {
+resource "aws_lambda_function" "clavovtr_get_users_list" {
   function_name = "210_clavovtr_get_users_list"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -437,7 +437,7 @@ resource "aws_lambda_function" "210_clavovtr_get_users_list" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_put_tipificacion" {
+resource "aws_lambda_function" "clavovtr_put_tipificacion" {
   function_name = "210_clavovtr_put_tipificacion"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
@@ -456,8 +456,8 @@ resource "aws_lambda_function" "210_clavovtr_put_tipificacion" {
     }
 }
 
-resource "aws_lambda_function" "210_clavovtr_put_users" {
-  function_name = "210_clavovtr_put_users"
+resource "aws_lambda_function" "clavovtr_put_users" {
+  function_name = "10_clavovtr_put_users"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
