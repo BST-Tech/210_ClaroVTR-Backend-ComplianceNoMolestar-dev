@@ -95,11 +95,12 @@ pipeline {
             steps {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                        sh '''                           
-                           terraform init
-                           terraform plan
-                           terraform apply -auto-approve
-                        '''   
+                        echo 'Deploy IaC Backend'
+                        // sh '''                           
+                        //    terraform init
+                        //    terraform plan
+                        //    terraform apply -auto-approve
+                        // '''   
                     }                        
                 }                
             }
@@ -110,13 +111,13 @@ pipeline {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         echo 'Import Cognito User Pool'
-                        // sh '''
-                        //     aws cognito-idp create-user-pool \
-                        //     --pool-name "dataService-userPool" \
-                        //     --region "us-west-2" \
-                        //     --username-attributes "email" \
-                        //     --cli-input-json file://cognito/user_pool.json
-                        // '''   
+                        sh '''
+                            aws cognito-idp create-user-pool \
+                            --pool-name "dataService-userPool" \
+                            --region "us-west-2" \
+                            --username-attributes "email" \
+                            --cli-input-json file://cognito/user_pool.json
+                        '''   
                     }                        
                 }                
             }

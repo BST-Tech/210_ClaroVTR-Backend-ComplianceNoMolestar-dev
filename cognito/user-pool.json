@@ -1,5 +1,4 @@
 {
-    "Name": "clarovtrNomolestar-userpool",
     "Policies": {
         "PasswordPolicy": {
             "MinimumLength": 8,
