@@ -36,7 +36,7 @@ resource "aws_lambda_function" "210_clarovtr_create_contact_center" {
     tags = {
         BU_COST_CENTRE = "5001"
     }
-}<
+}
 
 resource "aws_lambda_function" "210_clarovtr_create_user" {
   function_name = "210_clarovtr_create_user"
