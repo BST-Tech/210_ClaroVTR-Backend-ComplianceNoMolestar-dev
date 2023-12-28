@@ -266,12 +266,12 @@ resource "aws_lambda_function" "clarovtr_session_registration" {
     }
 }
 
-resource "aws_lambda_function" "clarovtr_uploads_leads" {
-  function_name = "210_clarovtr_uploads_leads"
+resource "aws_lambda_function" "clarovtr_upload_leads" {
+  function_name = "210_clarovtr_upload_leads"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clarovtr_uploads_leads.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_upload_leads.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
