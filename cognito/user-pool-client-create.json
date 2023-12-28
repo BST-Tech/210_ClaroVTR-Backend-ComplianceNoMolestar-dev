@@ -1,0 +1,83 @@
+{
+    "UserPoolClient": {
+        "UserPoolId": "us-east-1_FGwZAvMY3",
+        "ClientName": "create_userpool",
+        "ClientId": "499klhit20oi2m6vcol9h7nldh",
+        "LastModifiedDate": "2023-11-23T14:46:36.550000+00:00",
+        "CreationDate": "2023-11-23T14:41:26.397000+00:00",
+        "RefreshTokenValidity": 30,
+        "AccessTokenValidity": 60,
+        "IdTokenValidity": 60,
+        "TokenValidityUnits": {
+            "AccessToken": "minutes",
+            "IdToken": "minutes",
+            "RefreshToken": "days"
+        },
+        "ReadAttributes": [
+            "address",
+            "birthdate",
+            "email",
+            "email_verified",
+            "family_name",
+            "gender",
+            "given_name",
+            "locale",
+            "middle_name",
+            "name",
+            "nickname",
+            "phone_number",
+            "phone_number_verified",
+            "picture",
+            "preferred_username",
+            "profile",
+            "updated_at",
+            "website",
+            "zoneinfo"
+        ],
+        "WriteAttributes": [
+            "address",
+            "birthdate",
+            "email",
+            "family_name",
+            "gender",
+            "given_name",
+            "locale",
+            "middle_name",
+            "name",
+            "nickname",
+            "phone_number",
+            "picture",
+            "preferred_username",
+            "profile",
+            "updated_at",
+            "website",
+            "zoneinfo"
+        ],
+        "ExplicitAuthFlows": [
+            "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+            "ALLOW_CUSTOM_AUTH",
+            "ALLOW_REFRESH_TOKEN_AUTH",
+            "ALLOW_USER_PASSWORD_AUTH",
+            "ALLOW_USER_SRP_AUTH"
+        ],
+        "SupportedIdentityProviders": [
+            "COGNITO"
+        ],
+        "CallbackURLs": [
+            "https://127.0.0.1"
+        ],
+        "AllowedOAuthFlows": [
+            "code"
+        ],
+        "AllowedOAuthScopes": [
+            "email",
+            "openid",
+            "phone"
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "PreventUserExistenceErrors": "ENABLED",
+        "EnableTokenRevocation": true,
+        "EnablePropagateAdditionalUserContextData": false,
+        "AuthSessionValidity": 3
+    }
+}
