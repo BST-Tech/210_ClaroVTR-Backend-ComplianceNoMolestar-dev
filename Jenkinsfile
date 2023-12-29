@@ -111,13 +111,13 @@ pipeline {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         echo 'Import Cognito User Pool'
-                        sh '''
-                            aws cognito-idp create-user-pool \
-                            --pool-name "clarovtrNomolestar-userpool" \
-                            --region "us-west-2" \
-                            --username-attributes "email" \
-                            --cli-input-json file://cognito/user-pool.json
-                        '''   
+                        // sh '''
+                        //     aws cognito-idp create-user-pool \
+                        //     --pool-name "clarovtrNomolestar-userpool" \
+                        //     --region "us-west-2" \
+                        //     --username-attributes "email" \
+                        //     --cli-input-json file://cognito/user-pool.json
+                        // '''   
                     }                        
                 }                
             }
@@ -128,13 +128,13 @@ pipeline {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         echo 'Import Cognito User Pool Client'
-                        // sh '''
-                        //     aws cognito-idp create-user-pool-client \
-                        //     --region "us-west-2" \
-                        //     --user-pool-id us-west-2_Mq3MLMt86 \
-                        //     --client-name django-front \
-                        //     --cli-input-json file://cognito/user_pool_client.json
-                        // '''   
+                        sh '''
+                            aws cognito-idp create-user-pool-client \
+                            --region "us-west-2" \
+                            --user-pool-id us-west-2_nFCex3Tgc \
+                            --client-name create_userpool \
+                            --cli-input-json file://cognito/user-pool-client-create.json
+                        '''   
                     }                        
                 }                
             }
