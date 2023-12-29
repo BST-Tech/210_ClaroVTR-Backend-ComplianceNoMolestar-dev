@@ -1,13 +1,15 @@
-from src.database import list_reglas
+from src.database import get_regla_by_id
 from src.utils import element_to_json
 
 def run(event, context):
     uid = event['uid']
-    result_reglas = list_reglas(uid)
+    regla_id = event['regla']['id']
+    
+    result_reglas = get_regla_by_id(uid,regla_id)
     if len(result_reglas) > 0:
         return {
                 'statusCode': 200,
-                'reglas': element_to_json(result_reglas),
+                'regla': element_to_json(result_reglas),
             
         }
     else:

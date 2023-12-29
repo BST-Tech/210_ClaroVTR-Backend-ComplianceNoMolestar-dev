@@ -7,9 +7,7 @@ def element_to_json(data):
             "rango_fecha": element[2],
             "incidencias": element[3],
             "dias_cooler": element[4],
-            "activo": element[5],
-            "tipo_evento": element[6],
-            "descripcion": element[7]
+            "activo": element[5]
         })
     return new_data
     

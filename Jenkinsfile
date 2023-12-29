@@ -15,76 +15,76 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd functions/210_clarovtr_create_contact_center && zip -r ../../210_clarovtr_create_contact_center.zip .
+                        cd backend/210_clarovtr_create_contact_center && zip -r ../../210_clarovtr_create_contact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_create_user && zip -r ../../210_clarovtr_create_user.zip .
+                        cd backend/210_clarovtr_create_user && zip -r ../../210_clarovtr_create_user.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_download_historical_leads && zip -r ../../210_clarovtr_download_historical_leads.zip .
+                        cd backend/210_clarovtr_download_historical_leads && zip -r ../../210_clarovtr_download_historical_leads.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_get_historical_leads && zip -r ../../210_clarovtr_get_historical_leads.zip .
+                        cd backend/210_clarovtr_get_historical_leads && zip -r ../../210_clarovtr_get_historical_leads.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_get_info_contact_center && zip -r ../../210_clarovtr_get_info_contact_center.zip .
+                        cd backend/210_clarovtr_get_info_contact_center && zip -r ../../210_clarovtr_get_info_contact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_get_user && zip -r ../../210_clarovtr_get_user.zip .
+                        cd backend/210_clarovtr_get_user && zip -r ../../210_clarovtr_get_user.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_insert_tipificaciones && zip -r ../../210_clarovtr_insert_tipificaciones.zip .
+                        cd backend/210_clarovtr_insert_tipificaciones && zip -r ../../210_clarovtr_insert_tipificaciones.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_last_login && zip -r ../../210_clarovtr_last_login.zip .
+                        cd backend/210_clarovtr_last_login && zip -r ../../210_clarovtr_last_login.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_list_contact_center && zip -r ../../210_clarovtr_list_contact_center.zip .
+                        cd backend/210_clarovtr_list_contact_center && zip -r ../../210_clarovtr_list_contact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_list_contact_center_by_id && zip -r ../../210_clarovtr_list_contact_center_by_id.zip .
+                        cd backend/210_clarovtr_list_contact_center_by_id && zip -r ../../210_clarovtr_list_contact_center_by_id.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_list_tipo_contact_center && zip -r ../../210_clarovtr_list_tipo_contact_center.zip .
+                        cd backend/210_clarovtr_list_tipo_contact_center && zip -r ../../210_clarovtr_list_tipo_contact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_put_contact_center && zip -r ../../210_clarovtr_put_contact_center.zip .
+                        cd backend/210_clarovtr_put_contact_center && zip -r ../../210_clarovtr_put_contact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_session_registration && zip -r ../../210_clarovtr_session_registration.zip .
+                        cd backend/210_clarovtr_session_registration && zip -r ../../210_clarovtr_session_registration.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_uploads_leads && zip -r ../../210_clarovtr_uploads_leads.zip .
+                        cd backend/210_clarovtr_uploads_leads && zip -r ../../210_clarovtr_uploads_leads.zip .
                     '''
                     sh '''
-                        cd functions/210_clarovtr_validar_gestiones && zip -r ../../210_clarovtr_validar_gestiones.zip .
+                        cd backend/210_clarovtr_validar_gestiones && zip -r ../../210_clarovtr_validar_gestiones.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_password_reset && zip -r ../../210_clavovtr_password_reset.zip .
+                        cd backend/210_clavovtr_password_reset && zip -r ../../210_clavovtr_password_reset.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_delete_tipificacion && zip -r ../../210_clavovtr_delete_tipificacion.zip .
+                        cd backend/210_clavovtr_delete_tipificacion && zip -r ../../210_clavovtr_delete_tipificacion.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_get_conctact_center && zip -r ../../210_clavovtr_get_conctact_center.zip .
+                        cd backend/210_clavovtr_get_conctact_center && zip -r ../../210_clavovtr_get_conctact_center.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_get_roles && zip -r ../../210_clavovtr_get_roles.zip .
+                        cd backend/210_clavovtr_get_roles && zip -r ../../210_clavovtr_get_roles.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_get_tipificaciones_list && zip -r ../../210_clavovtr_get_tipificaciones_list.zip .
+                        cd backend/210_clavovtr_get_tipificaciones_list && zip -r ../../210_clavovtr_get_tipificaciones_list.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_get_tipificacion_by_id && zip -r ../../210_clavovtr_get_tipificacion_by_id.zip .
+                        cd backend/210_clavovtr_get_tipificacion_by_id && zip -r ../../210_clavovtr_get_tipificacion_by_id.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_get_users_list && zip -r ../../210_clavovtr_get_users_list.zip .
+                        cd backend/210_clavovtr_get_users_list && zip -r ../../210_clavovtr_get_users_list.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_put_tipificacion && zip -r ../../210_clavovtr_put_tipificacion.zip .
+                        cd backend/210_clavovtr_put_tipificacion && zip -r ../../210_clavovtr_put_tipificacion.zip .
                     '''
                     sh '''
-                        cd functions/210_clavovtr_put_users && zip -r ../../210_clavovtr_put_users.zip .
+                        cd backend/210_clavovtr_put_users && zip -r ../../210_clavovtr_put_users.zip .
                     '''
 
                 }
