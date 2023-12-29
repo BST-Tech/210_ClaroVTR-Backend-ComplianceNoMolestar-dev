@@ -11,7 +11,7 @@
     },
     "DeletionProtection": "ACTIVE",
     "LambdaConfig": {},
-    "SchemaAttributes": [
+    "Schema": [
         {
             "Name": "sub",
             "AttributeDataType": "String",
