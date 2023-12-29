@@ -40,20 +40,14 @@ class DatabaseConnection:
 		else:
 			print("No hay una conexión activa para cerrar.")
 
-def list_reglas(uid):
+def get_regla_by_id(uid, regla_id):
     email = get_user_by_id(uid)
-    # query=f"""
-    # select r.id, r.nombre, r.dias_rango, r.numero_incidencias, r.dias_permanencia, r.activa from regla r where r.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
-    #     join perfil_usuario pu on ecc.id = pu.id_empresa_ct
-    #     join usuario u on pu.id_usuario = u.id
-    #     where u.email = '{email}');"""
     query=f"""
-		select r.id, r.nombre, r.dias_rango, r.numero_incidencias, r.dias_permanencia, r.activa, te.tipo_evento, te.descripcion from regla r 
-		join tipo_evento te on r.id_tipo_evento  = te.id 
-		where r.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
-				join perfil_usuario pu on ecc.id = pu.id_empresa_ct
-				join usuario u on pu.id_usuario = u.id
-				where u.email = '{email}');"""
+    select r.id, r.nombre, r.dias_rango, r.numero_incidencias, r.dias_permanencia, r.activa, te.tipo_evento, te.descripcion from regla r 
+		join tipo_evento te on r.id_tipo_evento  = te.id  where r.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
+        join perfil_usuario pu on ecc.id = pu.id_empresa_ct
+        join usuario u on pu.id_usuario = u.id
+        where u.email = '{email}') and r.id = {regla_id};"""
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -62,5 +56,3 @@ def list_reglas(uid):
         return f"Error general: {e}"
     finally:
         db.close_connection()
-        
-        
