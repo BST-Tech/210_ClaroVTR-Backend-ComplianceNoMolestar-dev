@@ -132,8 +132,8 @@ pipeline {
                             aws cognito-idp create-user-pool-client \
                             --region "us-west-2" \
                             --user-pool-id us-west-2_nFCex3Tgc \
-                            --client-name create_userpool \
-                            --cli-input-json file://cognito/user-pool-client-create.json
+                            --client-name authorizationClient \
+                            --cli-input-json file://cognito/user-pool-client-authorization.json
                         '''   
                     }                        
                 }                
