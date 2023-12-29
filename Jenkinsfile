@@ -113,10 +113,10 @@ pipeline {
                         echo 'Import Cognito User Pool'
                         sh '''
                             aws cognito-idp create-user-pool \
-                            --pool-name "dataService-userPool" \
+                            --pool-name "clarovtrNomolestar-userpool" \
                             --region "us-west-2" \
                             --username-attributes "email" \
-                            --cli-input-json file://cognito/user_pool.json
+                            --cli-input-json file://cognito/user-pool.json
                         '''   
                     }                        
                 }                
