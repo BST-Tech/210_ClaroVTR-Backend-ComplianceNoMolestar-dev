@@ -248,8 +248,7 @@
         "BU_COST_CENTRE": "5001"
     },
     "AdminCreateUserConfig": {
-        "AllowAdminCreateUserOnly": true,
-        "UnusedAccountValidityDays": 7
+        "AllowAdminCreateUserOnly": true
     },
     "UsernameConfiguration": {
         "CaseSensitive": false
