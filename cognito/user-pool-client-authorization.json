@@ -27,6 +27,7 @@
         "aws.cognito.signin.user.admin",
         "openid"
     ],
+    "GenerateSecret": true,
     "AllowedOAuthFlowsUserPoolClient": true,
     "PreventUserExistenceErrors": "ENABLED",
     "EnableTokenRevocation": true,
