@@ -244,8 +244,9 @@
         "ReplyToEmailAddress": "clarovtrnom@bst.cl",
         "EmailSendingAccount": "COGNITO_DEFAULT"
     },
-    "UserPoolTags": {},
-    "Domain": "clarovtrnomolestar",
+    "UserPoolTags": {
+        "BU_COST_CENTRE": "5001"
+    },
     "AdminCreateUserConfig": {
         "AllowAdminCreateUserOnly": true,
         "UnusedAccountValidityDays": 7
