@@ -240,7 +240,6 @@
         ]
     },
     "MfaConfiguration": "OFF",
-    "EstimatedNumberOfUsers": 19,
     "EmailConfiguration": {
         "ReplyToEmailAddress": "clarovtrnom@bst.cl",
         "EmailSendingAccount": "COGNITO_DEFAULT"
