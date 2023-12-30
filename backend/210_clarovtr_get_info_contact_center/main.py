@@ -1,6 +1,7 @@
 import json
 from src.database import get_data_contact_center
 from shared.cognito import get_user_by_id
+from shared.utils import get_data_users_by_contact_center_to_json
 
 def run(event, context):
     uid = event['uid']
@@ -10,16 +11,13 @@ def run(event, context):
     result = get_data_contact_center(email, id_ct)
     
     if len(result) > 0:
-        return {
+        data ={
                 'statusCode': 200,
-                'data': {
-                    "last_conection" : result[3],
-                    "leads_validados": result[4],
-                    "last_upload_gestion": result[5]
-                    
-                }
+                'data':  get_data_users_by_contact_center_to_json(result)
             
         }
+        print(data)
+        return data
     else:
         return {
                 'statusCode': 204,
