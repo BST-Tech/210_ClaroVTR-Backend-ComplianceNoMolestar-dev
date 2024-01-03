@@ -1,5 +1,4 @@
 from shared.secret_manager import get_value_secret
-from shared.cognito import get_user_by_id
 import psycopg2
 
 
@@ -14,8 +13,7 @@ class DatabaseConnection:
 				host=environ['DB_HOST'])
 			return self.connection
 		except Exception as e:
-			print(f"Error al conectar a la base de datos: {e}")
-			return None
+			return f"Error al conectar a la base de datos: {e}"
 
 	def execute_query(self, query, params:str=None):
 		if self.connection is not None:
@@ -27,11 +25,9 @@ class DatabaseConnection:
 				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
+				return f"Error al ejecutar la consulta: {e}"
 		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+			return "No se ha establecido una conexión a la base de datos."
 
 	def close_connection(self):
 		if self.connection is not None:

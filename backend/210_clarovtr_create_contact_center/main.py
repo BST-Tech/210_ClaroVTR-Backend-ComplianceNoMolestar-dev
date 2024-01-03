@@ -13,7 +13,6 @@ def run(event, context):
     if rol in roles_admin:
         valor = get_exist_contactcenter(data_to_process)
         if len(valor) > 0:
-            print("registro ya existente")
             return {
                         'statusCode': 204,
                         'error': "Rut de contact center ya existe"
