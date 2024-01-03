@@ -132,12 +132,11 @@ def create_contact_center(new_data):
     query_user = f"""INSERT INTO public.contact_center (id_tipo, rut, nombre, razon_social, created_at, updated_at, activo)
     VALUES('{tipo}', '{rut}', '{nombre}', '{razon_social}','{timestamp}','{timestamp}', '{activo}') returning id;
     """
-    print(query_user)
+
     try:
         db = DatabaseConnection()
         if db.connect():
             result =db.execute_query(query_user)
-            print(result)
             return result[0][0]
     except Exception as e:
         return f"Error general: {e}"

@@ -1,12 +1,20 @@
 import json
 from src.database import get_data_resume
+from datetime import datetime, timedelta, timezone
 
 def data_to_json(data):
     result = []
     for value in data:
+        fecha_utc =  datetime.strptime(value[0], "%d-%m-%Y %H:%M") 
+        fecha_utc.replace(tzinfo=timezone.utc)
+        local_time_chile = timezone(timedelta(hours=-3))
+        fecha_chile = fecha_utc.astimezone(local_time_chile).strftime("%d-%m-%Y %H:%M")
+
+        print(fecha_chile)
+        
         result.append(
             {
-                "fecha": value[0],
+                "fecha": fecha_chile,
                 "usuario": value[1],
                 "leads_validados": value[2],
                 "leads_no_molestar": value[3],

@@ -3,8 +3,8 @@ def element_to_json(data):
     for element in data:
         new_data.append({
             "id": element[0],
-            "codigo": element[1],
-            "descripcion": element[2],
+            "tipificacion": element[1],
+            "nombre_tipificacion": element[2],
             "contacto": element[3],
             "venta": element[4],
             "id_contactCenter": element[5]

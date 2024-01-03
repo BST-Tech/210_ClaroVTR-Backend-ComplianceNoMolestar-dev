@@ -110,7 +110,7 @@ def put_regla_negocio(data_updated, id, email):
 	try:
 		db = DatabaseConnection()
 		if db.connect():
-			result = db.execute_query(query_regla_negocio)
+			result = db.execute_update(query_regla_negocio)
 			print(result)
 			return result
 	except Exception as e:

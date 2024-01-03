@@ -1,3 +1,5 @@
+import os
+import sys
 import time
 import datetime
 from sqlite3 import DatabaseError

@@ -24,26 +24,22 @@ def compare_data(data_event, data_user_list):
         return True
     
 def update_different_keys(data_user_list, new_data,user_id = None, id_contact_center = None ):
-    print("update_different_keys")
     contact_center = ['contact_center']
     usuario = ['nombre', 'apellidos', 'email', 'activo']
     result_contact_center = ""
     result_user = ""
     user_tuple = data_user_list[0]
-    print(f"user_tuple[3:8] {user_tuple[3:8]}")
     list_data = []
     list_contact_center = []
     list_user = []
     for key, user_value in zip(['nombre', 'apellidos', 'email', 'contact_center', 'activo'], user_tuple[3:8]):
-        print(f"user_value {user_value}")
-        print(f"new_data[key] {new_data[key]}")
         if user_value != new_data[key]:
             list_data.append({
                 "key": key,
                 "value":new_data[key]
             })
     for list in list_data:
-        print(list)
+
         if list['key'] in usuario:
             list_user.append({
                 "key": list['key'],

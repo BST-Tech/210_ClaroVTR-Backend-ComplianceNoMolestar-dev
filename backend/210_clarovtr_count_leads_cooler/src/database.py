@@ -1,9 +1,7 @@
-import os
-import sys
-from sqlite3 import DatabaseError
 from shared.secret_manager import get_value_secret
 from shared.cognito import get_user_by_id
 import psycopg2
+
 
 class DatabaseConnection:
 	def connect(self):
@@ -17,19 +15,6 @@ class DatabaseConnection:
 			return self.connection
 		except Exception as e:
 			print(f"Error al conectar a la base de datos: {e}")
-			return None
-
-	def execute_many_querys(self, query, params:list=None):
-		if self.connection is not None:
-			try:
-				cursor = self.connection.cursor()
-				cursor.executemany(query, params)
-				cursor.close()
-			except Exception as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
-		else:
-			print("No se ha establecido una conexión a la base de datos.")
 			return None
 
 	def execute_query(self, query, params:str=None):
@@ -52,29 +37,27 @@ class DatabaseConnection:
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
-def get_contact_cernter_list(uid):
-    email = get_user_by_id(uid)
-    query = '''select distinct ecc.id, cc.nombre
-	from empresa_contact_center ecc
-	join contact_center cc on ecc.id_contact_center = cc.id
-	join tipo_contact_center tcc on cc.id_tipo = tcc.id
-	where ecc.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
-	join perfil_usuario pu on ecc.id = pu.id_empresa_ct
-	join usuario u on pu.id_usuario = u.id
-	where u.email = %s) and ecc.activo = 1;'''
+def get_leads_by_count(uid):
+    query_count_leads = """
+    SELECT
+        COUNT(*) AS total_leads,
+        COUNT(CASE WHEN l.en_nomolestar = 1 THEN 1 END) AS en_nomolestar,
+        (SELECT COUNT(1) FROM lead_cooler lc WHERE lc.activo = 1) AS leads_en_cooler,
+        (SELECT COUNT(1) FROM lead_cooler lc WHERE lc.activo = 0) AS leads_liberados,
+        (SELECT COUNT(1) FROM gestion g) AS total_gestiones
+    FROM lead l;
+    """
+
     try:
         db = DatabaseConnection()
         if db.connect():
-            results = db.execute_query(query, email)
-            if results:
-                return results
-            else:
-                return None
+
+            # Devolver el resultado
+            return db.execute_query(query_count_leads)
     except Exception as e:
-        print(f"Error general: {e}")
+        return f"Error general: {e}"
     finally:
         db.close_connection()

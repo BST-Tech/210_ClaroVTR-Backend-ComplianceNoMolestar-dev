@@ -59,16 +59,17 @@ class DatabaseConnection:
 def get_users_list(uid):
     email = get_user_by_id(uid)
     query = '''
-	select p.id, u.nombre, u.apellidos, u.email, cc.id, u.activo as estado, r.nombre as rol, cc.nombre as nombre_contact_center
+	select p.id, u.nombre, u.apellidos, u.email, ecc.id as contact_center_id, p.activo as estado, r.nombre as rol, e.nombre as nombre_empresa
 	from perfil_usuario p
 	join empresa_contact_center ecc on p.id_empresa_ct = ecc.id
 	join contact_center cc on ecc.id_contact_center = cc.id
 	join usuario u on p.id_usuario = u.id
-	join rol r on p.id_rol = r.id 
-	where p.activo = 1 and ecc.id_empresa = (select ecc.id_empresa  from empresa_contact_center ecc
+	join rol r on p.id_rol = r.id
+	join empresa e on ecc.id_empresa = e.id
+	where ecc.id_empresa = (select distinct ecc.id_empresa  from empresa_contact_center ecc
 	join perfil_usuario pu on ecc.id = pu.id_empresa_ct
 	join usuario u on pu.id_usuario = u.id 
-	where u.email = %s)'''
+	where u.email =%s)'''
     try:
         db = DatabaseConnection()
         if db.connect():
