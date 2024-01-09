@@ -304,11 +304,11 @@ resource "aws_lambda_function" "clarovtr_validar_gestiones" {
 }
 
 resource "aws_lambda_function" "clavovtr_password_reset" {
-  function_name = "210_clavovtr_password_reset"
+  function_name = "210_clarovtr_password_reset"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_password_reset.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_password_reset.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -323,11 +323,11 @@ resource "aws_lambda_function" "clavovtr_password_reset" {
 }
 
 resource "aws_lambda_function" "clavovtr_delete_tipificacion" {
-  function_name = "210_clavovtr_delete_tipificacion"
+  function_name = "210_clarovtr_delete_tipificacion"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_delete_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_delete_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -342,11 +342,11 @@ resource "aws_lambda_function" "clavovtr_delete_tipificacion" {
 }
 
 resource "aws_lambda_function" "clavovtr_get_conctact_center" {
-  function_name = "210_clavovtr_get_conctact_center"
+  function_name = "210_clarovtr_get_conctact_center"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_get_conctact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_get_conctact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -361,11 +361,11 @@ resource "aws_lambda_function" "clavovtr_get_conctact_center" {
 }
 
 resource "aws_lambda_function" "clavovtr_get_roles" {
-  function_name = "210_clavovtr_get_roles"
+  function_name = "210_clarovtr_get_roles"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_get_roles.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_get_roles.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -380,11 +380,11 @@ resource "aws_lambda_function" "clavovtr_get_roles" {
 }
 
 resource "aws_lambda_function" "clavovtr_get_tipificaciones_list" {
-  function_name = "210_clavovtr_get_tipificaciones_list"
+  function_name = "210_clarovtr_get_tipificaciones_list"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_get_tipificaciones_list.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_get_tipificaciones_list.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -399,11 +399,11 @@ resource "aws_lambda_function" "clavovtr_get_tipificaciones_list" {
 }
 
 resource "aws_lambda_function" "clavovtr_get_tipificacion_by_id" {
-  function_name = "210_clavovtr_get_tipificacion_by_id"
+  function_name = "210_clarovtr_get_tipificacion_by_id"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_get_tipificacion_by_id.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_get_tipificacion_by_id.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -418,11 +418,11 @@ resource "aws_lambda_function" "clavovtr_get_tipificacion_by_id" {
 }
 
 resource "aws_lambda_function" "clavovtr_get_users_list" {
-  function_name = "210_clavovtr_get_users_list"
+  function_name = "210_clarovtr_get_users_list"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_get_users_list.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_get_users_list.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -437,11 +437,11 @@ resource "aws_lambda_function" "clavovtr_get_users_list" {
 }
 
 resource "aws_lambda_function" "clavovtr_put_tipificacion" {
-  function_name = "210_clavovtr_put_tipificacion"
+  function_name = "210_clarovtr_put_tipificacion"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_put_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_put_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -456,11 +456,11 @@ resource "aws_lambda_function" "clavovtr_put_tipificacion" {
 }
 
 resource "aws_lambda_function" "clavovtr_put_users" {
-  function_name = "210_clavovtr_put_users"
+  function_name = "210_clarovtr_put_users"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
   runtime       = "python3.9"
-  filename      = "210_clavovtr_put_users.zip"  # Cambia esto al nombre de tu archivo ZIP
+  filename      = "210_clarovtr_put_users.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
