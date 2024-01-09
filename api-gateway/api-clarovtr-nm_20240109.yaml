@@ -1,0 +1,911 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2024-01-02T19:42:52Z",
+    "title" : "clarovtrNoMolestar"
+  },
+  "paths" : {
+    "/authenticate" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_migrateusers_to_cognito/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/count_leads_cooler" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_count_leads_cooler/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/create_contact_center" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_create_contact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/create_users" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_create_user/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/delete_tipificacion" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_delete_tipificacion/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/download_historical_leads" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_download_historical_leads/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/entity_maintainer" : {
+      "x-amazon-apigateway-any-method" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_mantenedores/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_conctact_centers_list" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_conctact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_historical_leads" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_historical_leads/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_reglas_negocio_by_id" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_reglas_negocio_by_id/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_roles" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_roles/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_sessions_data" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_info_contact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_tipificacion_by_id" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificacion_by_id/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_tipificaciones" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificaciones_list/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_user_by_id" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_user/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/get_users_list" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_users_list/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/insert_tipificaciones" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_insert_tipificaciones/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_contact_center" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_contact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_contact_center_by_id" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_contact_center_by_id/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_empresa_login" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_list_empresas/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_list_empresa_user" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_list_empresas/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_reglas_negocio" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_reglas_negocio/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_tipo_contact_center" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_tipo_contact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/list_tipo_evento" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_list_tipo_evento/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/password_reset" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_password_reset/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/put_contact_center" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_put_contact_center/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/put_regla_negocio" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_put_regla_negocio/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/put_tipificacion" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_tipificacion/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/put_users" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_users/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/update_last_login" : {
+      "put" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_last_login/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/upload_gestiones" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_validar_gestiones/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    },
+    "/upload_leads" : {
+      "post" : {
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            }
+          }
+        },
+        "security" : [ {
+          "clarovtrNoMolestar" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "type" : "aws",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_uploads_leads/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT"
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "clarovtrNoMolestar" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "cognito_user_pools",
+      "x-amazon-apigateway-authorizer" : {
+        "type" : "cognito_user_pools",
+        "providerARNs" : [ "arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${AWS::Region}_nFCex3Tgc" ]
+      }
+    }
+  },
+  "definitions" : {
+    "Empty" : {
+      "type" : "object",
+      "title" : "Empty Schema"
+    }
+  }
+}
