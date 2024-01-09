@@ -1,17 +1,17 @@
-import json
-from src.database import update_last_login_user
+from src.database import list_reglas
+from src.utils import element_to_json
 
 def run(event, context):
     uid = event['uid']
-    data_updated = update_last_login_user(uid)
-    if data_updated:
+    result_reglas = list_reglas(uid)
+    if len(result_reglas) > 0:
         return {
                 'statusCode': 200,
-                'message': "Ultimo inicio de sesion registrado",
+                'reglas': element_to_json(result_reglas),
             
         }
     else:
         return {
                 'statusCode': 204,
-                'error': 'sin datos que actualizar'
+                'error': 'sin datos que mostrar'
         }

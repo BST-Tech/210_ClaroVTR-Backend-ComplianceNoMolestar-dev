@@ -1,7 +1,4 @@
 import json
-import boto3
-import hashlib
-import os
 from src.secret_manager import get_value_secret
 from src.cognito import create_user_on_userpool, validate_exist_on_cognito,authentication
 from src.database import get_element_by_email
@@ -9,21 +6,19 @@ from src.database import get_element_by_email
 # def simple_hash(password):
 #     return hashlib.md5(password.encode()).hexdigest()
 
-
 def run(event, context):
+
     secret_value = get_value_secret()
     username = event['username']
     password = event['password']
     ### Verificar que los datos existan en la base de datos
-    
+
     data = get_element_by_email(username, password)
 
     if data:
         print(data[0][0])
         print(data[0][1])
-        
 
-        
         name = data[0][0]
         family_name = data[0][1]
         result_cognito = validate_exist_on_cognito(username,secret_value)

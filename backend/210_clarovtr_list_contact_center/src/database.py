@@ -84,7 +84,7 @@ def get_rol_user(email):
         
 def get_list_contact_center(uid):
     email = get_user_by_id(uid)
-    query = f"""select distinct cc.id,
+    query = f"""select distinct ecc.id,
 	cc.nombre,
 	tcc.tipo_operador,
 	cc.rut,

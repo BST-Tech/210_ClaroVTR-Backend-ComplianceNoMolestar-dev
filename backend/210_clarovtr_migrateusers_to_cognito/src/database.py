@@ -1,9 +1,11 @@
 import os
 import sys
-from sqlite3 import DatabaseError
 import psycopg2
+import psycopg2.extras
 
 class DatabaseConnection:
+	def __init__(self):
+	    self.connection = None
 	def connect(self):
 		try:
 			self.connection = psycopg2.connect(
@@ -39,7 +41,7 @@ class DatabaseConnection:
 			print("No hay una conexión activa para cerrar.")
 
 def get_element_by_email(username, password):   
-	query = 'select first_name, last_name from users where username = %s and password = %s;'
+	query = 'select nombre, apellidos from usuario where email = %s and password = %s;'
 	params = (username, password)
 	try:
 		db = DatabaseConnection()
