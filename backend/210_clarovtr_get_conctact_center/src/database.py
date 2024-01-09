@@ -58,16 +58,14 @@ class DatabaseConnection:
 
 def get_contact_cernter_list(uid):
     email = get_user_by_id(uid)
-    print(f"email {email}")
-    query = '''
-	select ecc.id, cc.nombre from perfil_usuario pu join empresa_contact_center ecc 
-on pu.id_empresa_ct = ecc.id join contact_center cc 
-on ecc.id_contact_center = cc.id join usuario u
-on pu.id_usuario = u.id join empresa e
-on e.id = ecc.id_empresa where ecc.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
-join perfil_usuario pu on ecc.id = pu.id_empresa_ct
-join usuario u on pu.id_usuario = u.id 
-where u.email =  %s)'''
+    query = '''select distinct ecc.id, cc.nombre
+	from empresa_contact_center ecc
+	join contact_center cc on ecc.id_contact_center = cc.id
+	join tipo_contact_center tcc on cc.id_tipo = tcc.id
+	where ecc.id_empresa = (select ecc.id_empresa from empresa_contact_center ecc
+	join perfil_usuario pu on ecc.id = pu.id_empresa_ct
+	join usuario u on pu.id_usuario = u.id
+	where u.email = %s) and ecc.activo = 1;'''
     try:
         db = DatabaseConnection()
         if db.connect():

@@ -43,8 +43,7 @@ class DatabaseConnection:
 			except psycopg2.Error as e:
 				return f"Error al ejecutar la consulta: {e}"
 		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+			return "No se ha establecido una conexión a la base de datos."
 
 	def execute_without_return(self, query, params:str=None):
 		if self.connection is not None:
@@ -57,14 +56,12 @@ class DatabaseConnection:
 			except psycopg2.Error as e:
 				return f"Error al ejecutar la consulta: {e}"
 		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+			return "No se ha establecido una conexión a la base de datos."
 
 	def close_connection(self):
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			# print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
@@ -101,7 +98,7 @@ def get_rol_user(email):
             else:
                 return None
     except Exception as e:
-        print(f"Error general: {e}")
+        return f"Error general: {e}"
     finally:
         db.close_connection()
         
@@ -117,7 +114,7 @@ def get_user_data_email(user_id):
             else:
                 return None
     except Exception as e:
-        print(f"Error general: {e}")
+        return f"Error general: {e}"
     finally:
         db.close_connection()
 
@@ -127,17 +124,14 @@ def create_contact_center(new_data):
     rut = new_data.get('rut')
     tipo = int(new_data.get('tipo'))
     activo = int(new_data.get('activo'))
-    print(type(activo), type(activo))
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     query_user = f"""INSERT INTO public.contact_center (id_tipo, rut, nombre, razon_social, created_at, updated_at, activo)
     VALUES('{tipo}', '{rut}', '{nombre}', '{razon_social}','{timestamp}','{timestamp}', '{activo}') returning id;
     """
-    print(query_user)
     try:
         db = DatabaseConnection()
         if db.connect():
             result =db.execute_query(query_user)
-            print(result)
             return result[0][0]
     except Exception as e:
         return f"Error general: {e}"

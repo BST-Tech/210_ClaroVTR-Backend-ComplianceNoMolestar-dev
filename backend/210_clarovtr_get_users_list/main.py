@@ -8,7 +8,7 @@ def run(event, context):
     if len(data_user_list) > 0:
         return {
                 'statusCode': 200,
-                'tipificaciones':element_to_json(data_user_list)
+                'users':element_to_json(data_user_list)
             
         }
     else:

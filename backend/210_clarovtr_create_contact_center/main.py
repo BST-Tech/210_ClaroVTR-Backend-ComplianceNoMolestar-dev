@@ -11,16 +11,13 @@ def run(event, context):
     secret_value = get_value_secret()
     roles_admin = secret_value.get('USERS_ADMIN')
     if rol in roles_admin:
-
         valor = get_exist_contactcenter(data_to_process)
         if len(valor) > 0:
-            print("registro ya existente")
             return {
                         'statusCode': 204,
                         'error': "Rut de contact center ya existe"
                 }
         id_new_contact_center = create_contact_center(data_to_process)
-        print(f"id_new_contact_center {id_new_contact_center} ")
         new_empresa = create_empresa_contact_center(id_new_contact_center, data_to_process, email_user)
         if new_empresa == "Insertado correctamente":
             return {
