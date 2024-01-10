@@ -107,6 +107,22 @@ pipeline {
                     sh '''
                         cd backend/210_clarovtr_validar_gestiones && zip -r ../../210_clarovtr_validar_gestiones.zip .
                     '''
+
+                     sh '''
+                        cd backend/210_clarovtr_get_list_empresas && zip -r ../../210_clarovtr_get_list_empresas.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_get_reglas_negocio_by_id && zip -r ../../210_clarovtr_get_reglas_negocio_by_id.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_count_leads_cooler && zip -r ../../210_clarovtr_count_leads_cooler.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_list_tipo_evento && zip -r ../../210_clarovtr_list_tipo_evento.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_put_regla_negocio && zip -r ../../210_clarovtr_put_regla_negocio.zip .
+                    '''
                 }
             }
         }
