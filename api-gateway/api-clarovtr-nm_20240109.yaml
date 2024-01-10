@@ -131,7 +131,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_delete_tipificacion/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_delete_tipificacion/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -215,7 +215,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_conctact_center/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_conctact_center/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -299,7 +299,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_roles/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_roles/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -355,7 +355,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificacion_by_id/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_tipificacion_by_id/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -383,7 +383,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_tipificaciones_list/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_tipificaciones_list/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -439,7 +439,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_get_users_list/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_get_users_list/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -685,7 +685,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_password_reset/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_password_reset/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -769,7 +769,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_tipificacion/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_put_tipificacion/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"
@@ -797,7 +797,7 @@
         "x-amazon-apigateway-integration" : {
           "type" : "aws",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clavovtr_put_users/invocations",
+          "uri" : "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:210_clarovtr_put_users/invocations",
           "responses" : {
             "default" : {
               "statusCode" : "200"

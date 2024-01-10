@@ -21,7 +21,16 @@ pipeline {
                         cd backend/210_clarovtr_create_user && zip -r ../../210_clarovtr_create_user.zip .
                     '''
                     sh '''
+                        cd backend/210_clarovtr_delete_contact_center && zip -r ../../210_clarovtr_delete_contact_center.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_delete_tipificacion && zip -r ../../210_clarovtr_delete_tipificacion.zip .
+                    '''
+                    sh '''
                         cd backend/210_clarovtr_download_historical_leads && zip -r ../../210_clarovtr_download_historical_leads.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_conctact_center && zip -r ../../210_clarovtr_get_conctact_center.zip .
                     '''
                     sh '''
                         cd backend/210_clarovtr_get_historical_leads && zip -r ../../210_clarovtr_get_historical_leads.zip .
@@ -30,7 +39,25 @@ pipeline {
                         cd backend/210_clarovtr_get_info_contact_center && zip -r ../../210_clarovtr_get_info_contact_center.zip .
                     '''
                     sh '''
+                        cd backend/210_clarovtr_get_perfiles && zip -r ../../210_clarovtr_get_perfiles.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_profile_list && zip -r ../../210_clarovtr_get_profile_list.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_roles && zip -r ../../210_clarovtr_get_roles.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_tipificacion_by_id && zip -r ../../210_clarovtr_get_tipificacion_by_id.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_tipificaciones_list && zip -r ../../210_clarovtr_get_tipificaciones_list.zip .
+                    '''
+                    sh '''
                         cd backend/210_clarovtr_get_user && zip -r ../../210_clarovtr_get_user.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_get_users_list && zip -r ../../210_clarovtr_get_users_list.zip .
                     '''
                     sh '''
                         cd backend/210_clarovtr_insert_tipificaciones && zip -r ../../210_clarovtr_insert_tipificaciones.zip .
@@ -45,10 +72,31 @@ pipeline {
                         cd backend/210_clarovtr_list_contact_center_by_id && zip -r ../../210_clarovtr_list_contact_center_by_id.zip .
                     '''
                     sh '''
+                        cd backend/210_clarovtr_list_empresas && zip -r ../../210_clarovtr_list_empresas.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_list_reglas_negocio && zip -r ../../210_clarovtr_list_reglas_negocio.zip .
+                    '''
+                    sh '''
                         cd backend/210_clarovtr_list_tipo_contact_center && zip -r ../../210_clarovtr_list_tipo_contact_center.zip .
                     '''
                     sh '''
+                        cd backend/210_clarovtr_mantenedores && zip -r ../../210_clarovtr_mantenedores.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_migrateusers_to_cognito && zip -r ../../210_clarovtr_migrateusers_to_cognito.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_password_reset && zip -r ../../210_clarovtr_password_reset.zip .
+                    '''
+                    sh '''
                         cd backend/210_clarovtr_put_contact_center && zip -r ../../210_clarovtr_put_contact_center.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_put_tipificacion && zip -r ../../210_clarovtr_put_tipificacion.zip .
+                    '''
+                    sh '''
+                        cd backend/210_clarovtr_put_users && zip -r ../../210_clarovtr_put_users.zip .
                     '''
                     sh '''
                         cd backend/210_clarovtr_session_registration && zip -r ../../210_clarovtr_session_registration.zip .
@@ -59,34 +107,22 @@ pipeline {
                     sh '''
                         cd backend/210_clarovtr_validar_gestiones && zip -r ../../210_clarovtr_validar_gestiones.zip .
                     '''
-                    sh '''
-                        cd backend/210_clavovtr_password_reset && zip -r ../../210_clavovtr_password_reset.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_delete_tipificacion && zip -r ../../210_clavovtr_delete_tipificacion.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_get_conctact_center && zip -r ../../210_clavovtr_get_conctact_center.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_get_roles && zip -r ../../210_clavovtr_get_roles.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_get_tipificaciones_list && zip -r ../../210_clavovtr_get_tipificaciones_list.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_get_tipificacion_by_id && zip -r ../../210_clavovtr_get_tipificacion_by_id.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_get_users_list && zip -r ../../210_clavovtr_get_users_list.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_put_tipificacion && zip -r ../../210_clavovtr_put_tipificacion.zip .
-                    '''
-                    sh '''
-                        cd backend/210_clavovtr_put_users && zip -r ../../210_clavovtr_put_users.zip .
-                    '''
 
+                     sh '''
+                        cd backend/210_clarovtr_get_list_empresas && zip -r ../../210_clarovtr_get_list_empresas.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_get_reglas_negocio_by_id && zip -r ../../210_clarovtr_get_reglas_negocio_by_id.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_count_leads_cooler && zip -r ../../210_clarovtr_count_leads_cooler.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_list_tipo_evento && zip -r ../../210_clarovtr_list_tipo_evento.zip .
+                    '''
+                     sh '''
+                        cd backend/210_clarovtr_put_regla_negocio && zip -r ../../210_clarovtr_put_regla_negocio.zip .
+                    '''
                 }
             }
         }
@@ -96,11 +132,11 @@ pipeline {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         echo 'Deploy IaC Backend'
-                        // sh '''                           
-                        //    terraform init
-                        //    terraform plan
-                        //    terraform apply -auto-approve
-                        // '''   
+                        sh '''                           
+                           terraform init
+                           terraform plan
+                           terraform apply -auto-approve
+                        '''   
                     }                        
                 }                
             }
@@ -128,13 +164,13 @@ pipeline {
                 script {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-creds-prod-bst', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         echo 'Import Cognito User Pool Client'
-                        sh '''
-                            aws cognito-idp create-user-pool-client \
-                            --region "us-west-2" \
-                            --user-pool-id us-west-2_nFCex3Tgc \
-                            --client-name authorizationClient \
-                            --cli-input-json file://cognito/user-pool-client-authorization.json
-                        '''   
+                        // sh '''
+                        //     aws cognito-idp create-user-pool-client \
+                        //     --region "us-west-2" \
+                        //     --user-pool-id us-west-2_nFCex3Tgc \
+                        //     --client-name authorizationClient \
+                        //     --cli-input-json file://cognito/user-pool-client-authorization.json
+                        // '''   
                     }                        
                 }                
             }
