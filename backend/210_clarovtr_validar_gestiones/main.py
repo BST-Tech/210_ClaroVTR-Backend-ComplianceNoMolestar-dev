@@ -75,10 +75,12 @@ def run(event, context):
         value_return = validate_information(data,id_empresa_ct )
         if value_return['status']:
             tipificacion = get_tipificaciones(data['cod_tipificacion'],id_empresa_ct)
-            id_tipificacion = tipificacion[0][1]
+            print(tipificacion)
+            tipificacion_name = tipificacion[0][0]
+            print(tipificacion_name)
 
             data_valid.append(( 
-                id_tipificacion,
+                tipificacion_name,
                 data['pcs_salida'][-9:],
                 data['pcs_cliente'][-9:], 
                 format_date(data['fechallamada']), 

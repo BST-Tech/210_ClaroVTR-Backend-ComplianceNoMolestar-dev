@@ -25,14 +25,15 @@ class DatabaseConnection:
 		if self.connection is not None:
 			try:
 				cursor = self.connection.cursor()
-				cursor.executemany(query, params)
+				result = cursor.executemany(query, params)
+				print(result)
+
 				cursor.close()
 			except Exception as e:
 				print(f"Error al ejecutar la consulta: {e}")
 				return None
 		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+			return "No se ha establecido una conexión a la base de datos."
 
 	def execute_query(self, query, params:str=None):
 		if self.connection is not None:
@@ -60,17 +61,14 @@ class DatabaseConnection:
 				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
+				return f"Error al ejecutar la consulta: {e}"
 		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+			return "No se ha establecido una conexión a la base de datos."
 
 	def close_connection(self):
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
@@ -130,7 +128,8 @@ def insert_gestiones(data):
         id_usuario)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
         """
-
+    print(query)
+    print(data)
     try:
         db = DatabaseConnection()
         if db.connect():

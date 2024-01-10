@@ -1,14 +1,23 @@
 import json
 from shared.cognito import get_user_by_id,validate_exist_on_cognito,create_user_cognito
 from shared.secret_manager import get_value_secret
-from src.database import create_user, create_perfil_usuario, get_id_ct,get_rol_user
+from src.database import create_user, create_perfil_usuario,get_rol_user
 from src.utils import get_numeric_value
 
 def run(event, context):
-    uid = event['uid']
+    """
+    The function `run` processes data to create a new user, validate their existence in Cognito, and
+    create the user in Cognito if they don't already exist.
+    
+    :param event: The `event` parameter is a dictionary that contains the data passed to the function
+    when it is invoked. It is expected to have the following keys:
+    :param context: The `context` parameter is an object that provides information about the runtime
+    environment of the function. It includes details such as the AWS request ID, function name, and
+    other contextual information. In this code snippet, the `context` parameter is not used
+    :return: The code returns a dictionary with the following keys and values:
+    """
     data_to_process = event['data']
-    email_user = get_user_by_id(uid)
-    rol = get_rol_user(email_user)
+    rol = get_rol_user(get_user_by_id(event['uid']))
     secret_value = get_value_secret()
     roles_admin = secret_value.get('USERS_ADMIN')
     email_new_user = data_to_process.get('email')
@@ -26,7 +35,6 @@ def run(event, context):
                     else:
                         
                         result_create = create_user_cognito(data_to_process, secret_value)
-                        print(result_create)
                         if result_create == 200:
                             return {
                                 'statusCode': 200,
