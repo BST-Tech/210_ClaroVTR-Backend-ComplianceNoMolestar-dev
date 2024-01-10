@@ -63,7 +63,7 @@ def get_tipificaciones_from_api(uid, cc_id):
 	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
 	on pu.id_empresa_ct = ecc.id join usuario u 
 	on u.id = pu.id_usuario
-	where u.email ='{email}' and ecc.id_contact_center = {cc_id}"""
+	where u.email ='{email}' and ecc.id = {cc_id}"""
     print(query)
     try:
         db = DatabaseConnection()
