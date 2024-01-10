@@ -185,15 +185,7 @@ pipeline {
                             --statement-id ${STATEMENT_ID} \
                             --action lambda:InvokeFunction \
                             --principal apigateway.amazonaws.com \
-                            --source-arn "arn:aws:execute-api:${REGION_NAME}:${ACCOUNT}:${APIGW}/*/POST/authenticate"
-
-                            STATEMENT_ID=$(uuidgen)
-                            aws lambda add-permission --function-name 210_clarovtr_count_leads_cooler \
-                            --region ${REGION_NAME} \
-                            --statement-id ${STATEMENT_ID} \
-                            --action lambda:InvokeFunction \
-                            --principal apigateway.amazonaws.com \
-                            --source-arn "arn:aws:execute-api:${REGION_NAME}:${ACCOUNT}:${APIGW}/*/GET/count_leads_cooler"
+                            --source-arn "arn:aws:execute-api:${REGION_NAME}:${ACCOUNT}:${APIGW}/*/POST/authenticate"                            
 
                             STATEMENT_ID=$(uuidgen)
                             aws lambda add-permission --function-name 210_clarovtr_mantenedores \
