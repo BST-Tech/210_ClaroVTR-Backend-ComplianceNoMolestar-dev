@@ -6,7 +6,7 @@ import psycopg2
 
 class DatabaseConnection:
 	def connect(self):
-	#	environ = get_value_secret()
+		environ = get_value_secret()
 	#	print(environ)
 		try:
 			self.connection = psycopg2.connect(

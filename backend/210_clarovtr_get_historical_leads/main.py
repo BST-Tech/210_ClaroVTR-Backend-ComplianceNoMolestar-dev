@@ -28,7 +28,7 @@ def data_to_json(data):
 
 def run(event, context):
     data = get_data_resume()
-    if len(data) == 0:
+    if not data or len(data) == 0:
         return {
         'statusCode': 204,
         'body': json.dumps('Sin contenido')
