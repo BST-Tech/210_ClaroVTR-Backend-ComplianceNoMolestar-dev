@@ -20,13 +20,11 @@ class DatabaseConnection:
 			print(f"Error al conectar a la base de datos: {e}")
 			return None
 
-
 	def execute_many_querys(self, query, params:list=None):
 		if self.connection is not None:
 			try:
 				cursor = self.connection.cursor()
 				cursor.executemany(query, params)
-				cursor.close()
 			except Exception as e:
 				print(f"Error al ejecutar la consulta: {e}")
 				return None
@@ -40,7 +38,6 @@ class DatabaseConnection:
 				cursor = self.connection.cursor()
 				cursor.execute(query, (params,))
 				result = cursor.fetchall()
-				cursor.close()
 				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
@@ -56,7 +53,6 @@ class DatabaseConnection:
 				cursor = self.connection.cursor()
 				cursor.execute(query)
 				result = cursor.fetchall()
-				cursor.close()
 				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
@@ -70,51 +66,9 @@ class DatabaseConnection:
 		if self.connection is not None:
 			self.connection.commit()
 			self.connection.close()
-			print("Conexión a la base de datos cerrada.")
 		else:
 			print("No hay una conexión activa para cerrar.")
 
-# def insert_gestiones(data):
-#     status = 200
-#     query ="""
-#     INSERT INTO public.gestion (
-#         id_lead_carga,
-#         id_usuario,
-#         id_tipificacion,
-#         operador_id_ejecutivo,
-#         pcs_salida, 
-#         pcs_cliente,
-#         venta,
-#         contacto,
-#         segundos_llamada,
-#         codigo_carga,
-#         fecha_llamada,
-#         tipificacion,
-#         campania,
-#         canal_o_nombre_eps,
-#         loaded_at,
-#         updated_at,
-#         id_empresa,
-#         id_canal,
-#         id_empresa_ct,
-#         procesada)
-#         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
-#         """
-
-#     try:
-#         db = DatabaseConnection()
-#         if db.connect():
-#             results = db.execute_many_querys(query, data)
-#             if results:
-#                 print(results)
-#                 return results
-#             else:
-#                 return None
-#     except Exception as e:
-#         print(f"Error general: {e}")
-#     finally:
-#         db.close_connection()
-#     return status
 def insert_gestiones(data):
     query ="""
     INSERT INTO public.gestion (
@@ -130,7 +84,6 @@ def insert_gestiones(data):
         id_usuario)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
         """
-
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -145,7 +98,6 @@ def get_element_by_upload_code(codigo_carga):
     select lc.codigo_carga, lc.created_at, u.nombre ||' ' ||u.apellidos as usuario, lc.pcs_cliente, lc.en_nomolestar, lc.en_cooler  from lead_carga lc
     join perfil_usuario pu on lc.id_usuario = pu.id 
     join usuario u on pu.id_usuario = u.id where lc.codigo_carga = %s;'''
-	#query = "select * from lead_carga lc where lc.codigo_carga = %s;"
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -207,13 +159,15 @@ def update_resumen_lead_carga(upload_code):
         db.close_connection()
     return status
 
-def get_tipificaciones(value, id_empresa_ct):
-    data_consult = '%' + value + '%'
-    query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion like '{data_consult}' and t.id_empresa_ct = {id_empresa_ct};"
+def get_tipificaciones(values, id_empresa_ct):
+    # data_consult = '%' + value + '%'
+    values_in = "(" + ", ".join(["'" + valor + "'" for valor in values]) + ")"
+    # query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion like '{data_consult}' and t.id_empresa_ct = {id_empresa_ct};"
+    query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion in {values_in} and t.id_empresa_ct = {id_empresa_ct};"
     try:
         db = DatabaseConnection()
         if db.connect():
-            return db.execute_like_query(query)
+            return db.execute_query(query)
     except Exception as e:
         return f"Error general: {e}"
     finally:
@@ -238,3 +192,45 @@ def get_id_ct(uid):
         return f"Error general: {e}"
     finally:
         db.close_connection()
+        
+        
+def get_codigo_carga_gestion():
+    query = """SELECT g.codigo_carga
+    FROM public.gestion g
+    WHERE g.loaded_at::date = CURRENT_DATE
+    ORDER BY g.loaded_at DESC
+    LIMIT 1;"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query)
+            if results:
+                return results[0][0]
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+    return 500
+
+def get_last_codigo_carga_lead():
+    query = """SELECT lc.codigo_carga
+    FROM public.lead_carga lc
+    ORDER BY lc.created_at DESC
+    LIMIT 1;"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query)
+            if results:
+                return results[0][0]
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+    return 500
+    
+    

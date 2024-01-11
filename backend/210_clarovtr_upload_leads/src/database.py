@@ -21,7 +21,6 @@ class DatabaseConnection:
 			try:
 				cursor = self.connection.cursor()
 				cursor.executemany(query, params)
-				cursor.close()
 			except Exception as e:
 				print(f"Error al ejecutar la consulta: {e}")
 				return None
@@ -35,7 +34,6 @@ class DatabaseConnection:
 				cursor = self.connection.cursor()
 				cursor.execute(query, (params,))
 				result = cursor.fetchall()
-				cursor.close()
 				return result
 			# except Exception as e:
 			except psycopg2.Error as e:
