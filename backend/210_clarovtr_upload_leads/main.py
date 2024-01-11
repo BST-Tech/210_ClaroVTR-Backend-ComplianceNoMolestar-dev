@@ -33,6 +33,7 @@ def run(event, context):
     data_user = get_user_by_id(event['uid'])
     id_canal = event['id_canal']
     id_code_uploads = generate_load_code_id()
+    print(f" id_code_uploads {id_code_uploads}")
     pcs_data_to_storage = []
     user_data_db = get_data_user(data_user)
     error = False
