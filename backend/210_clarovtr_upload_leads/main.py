@@ -32,11 +32,13 @@ def run(event, context):
     data_from_event = event['TELEFONO A VALIDAR']
     data_user = get_user_by_id(event['uid'])
     id_canal = event['id_canal']
-    id_code_uploads = generate_load_code_id()
     pcs_data_to_storage = []
     user_data_db = get_data_user(data_user)
-    print(user_data_db)
-    print(f"user_data_db {user_data_db}")
+    id_empresa_ct = user_data_db[0][1]
+    id_code_uploads = generate_load_code_id(id_empresa_ct)
+    print(f" id_code_uploads {id_code_uploads}")
+    
+    
     error = False
     errors = []
     for pcs in data_from_event:
@@ -56,7 +58,6 @@ def run(event, context):
     if not error:
         return {
             'statusCode': 200,
-            'upload_code': id_code_uploads,
             'message': "Archivo cargado correctamente",
             'body': data_response(data_result_upload_daily)
         }
