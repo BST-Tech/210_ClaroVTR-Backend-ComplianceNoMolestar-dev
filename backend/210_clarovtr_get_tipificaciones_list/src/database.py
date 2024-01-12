@@ -81,7 +81,7 @@ def get_tipificaciones_from_api(uid, cc_id):
 def get_id_empresa_ct(uid):
     email = get_user_by_id(uid)
     query = f"""
-	select ecc.id_contact_center from perfil_usuario pu join usuario u on pu.id_usuario = u.id
+	select ecc.id from perfil_usuario pu join usuario u on pu.id_usuario = u.id
 join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
 where u.email = '{email}'"""
     print(query)
