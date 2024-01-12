@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from src.database import get_tipificaciones, insert_gestiones, get_data_user
+from src.database import get_tipificaciones, insert_gestiones, get_data_user, update_resumen_lead_carga
 from shared.aws_cognito import get_user_by_id
 from shared.utils import generate_load_gestion_code, format_date, validate_information, get_all_tipificaciones
 
@@ -64,6 +64,7 @@ def run(event, context):
             }
     elif len(data_error) == 0:
         result = insert_gestiones(data_valid)
+        # result_resumen = update_resumen_lead_carga(codigo_carga);
         return {
             'statusCode': 200,
             'message': "Archivo cargado correctamente",
