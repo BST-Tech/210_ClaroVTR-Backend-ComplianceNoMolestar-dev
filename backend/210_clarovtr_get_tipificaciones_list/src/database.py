@@ -57,13 +57,13 @@ class DatabaseConnection:
 			print("No hay una conexión activa para cerrar.")
 
 def get_tipificaciones_from_api(uid, cc_id):
-    email = get_user_by_id(uid)
+    # email = get_user_by_id(uid)
     query = f"""
 	select t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, ecc.id_contact_center, t.activo from tipificacion t join empresa_contact_center ecc
 	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
 	on pu.id_empresa_ct = ecc.id join usuario u 
 	on u.id = pu.id_usuario
-	where u.email ='{email}' and ecc.id = {cc_id}"""
+	where ecc.id = {cc_id}"""
     print(query)
     try:
         db = DatabaseConnection()
