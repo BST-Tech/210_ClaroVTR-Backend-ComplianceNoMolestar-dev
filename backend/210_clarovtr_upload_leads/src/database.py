@@ -143,10 +143,10 @@ def update_resumen_lead_carga(upload_code):
         db.close_connection()
     return 500
 
-def get_codigo_carga():
-    query = """SELECT lc.codigo_carga
+def get_codigo_carga(id_empresa_ct):
+    query = f"""SELECT lc.codigo_carga
     FROM lead_carga lc
-    WHERE lc.created_at >= CURRENT_DATE
+    WHERE lc.created_at >= CURRENT_DATE AND lc.id_empresa_ct = {id_empresa_ct}
     AND lc.created_at < CURRENT_DATE + INTERVAL '1 day'ORDER BY lc.created_at  DESC
     LIMIT 1;"""
     try:

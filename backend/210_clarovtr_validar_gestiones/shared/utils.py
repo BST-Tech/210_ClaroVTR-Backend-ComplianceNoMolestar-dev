@@ -6,17 +6,17 @@ from src.database import get_codigo_carga_gestion, get_tipificaciones, get_last_
 
 # def generate_load_code_id():
 #     return uuid.uuid4().hex
-def generate_load_gestion_code():
+def generate_load_gestion_code(id_empresa_ct):
     #debo verificar si existe alguna carga anterior en el dia, si no existe.. creo el id..
     #si existe, rescatarlo y mantener ese como codigo.
-    codigo_carga_getion = get_codigo_carga_gestion()
+    codigo_carga_getion = get_codigo_carga_gestion(id_empresa_ct)
     if codigo_carga_getion and len(codigo_carga_getion) > 0:
         return codigo_carga_getion
     else:
         # codigo_gestion = get_last_codigo_carga_lead()
         # print(f" codigo_gestion {codigo_gestion}")
         # # return uuid.uuid4().hex
-        return get_last_codigo_carga_lead()
+        return get_last_codigo_carga_lead(id_empresa_ct)
 
 def convert_date(value):
     return datetime.strptime(value, '%d-%m-%Y').strftime('%d-%m-%Y %H:%M:%S')

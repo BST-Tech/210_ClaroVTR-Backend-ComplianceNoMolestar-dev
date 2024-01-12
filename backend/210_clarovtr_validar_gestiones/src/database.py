@@ -194,10 +194,10 @@ def get_id_ct(uid):
         db.close_connection()
         
         
-def get_codigo_carga_gestion():
-    query = """SELECT g.codigo_carga
+def get_codigo_carga_gestion(id_empresa_ct):
+    query = f"""SELECT g.codigo_carga
     FROM public.gestion g
-    WHERE g.loaded_at::date = CURRENT_DATE
+    WHERE g.loaded_at::date = CURRENT_DATE and g.id_empresa_ct = {id_empresa_ct}
     ORDER BY g.loaded_at DESC
     LIMIT 1;"""
     try:
@@ -214,9 +214,10 @@ def get_codigo_carga_gestion():
         db.close_connection()
     return 500
 
-def get_last_codigo_carga_lead():
-    query = """SELECT lc.codigo_carga
+def get_last_codigo_carga_lead(id_empresa_ct):
+    query = f"""SELECT lc.codigo_carga
     FROM public.lead_carga lc
+    where lc.id_empresa_ct = {id_empresa_ct}
     ORDER BY lc.created_at DESC
     LIMIT 1;"""
     try:

@@ -6,13 +6,14 @@ from shared.utils import generate_load_gestion_code, format_date, validate_infor
 
 def run(event, context):
     datas = event['data']
-    codigo_carga = generate_load_gestion_code() #event['cod_carga']
     data_valid = []
     data_error = []
     error_tipificacion = []
     data_user = get_user_by_id(event['uid'])
     user_data_db = get_data_user(data_user)
     id_empresa_ct = user_data_db[0][1]
+    codigo_carga = generate_load_gestion_code(id_empresa_ct) #event['cod_carga']
+    
     tipificaciones_list = list(get_all_tipificaciones(datas)) 
     tipificaciones = get_tipificaciones(tipificaciones_list,id_empresa_ct)
     # tipificaciones_dict = dict(tipificaciones)
