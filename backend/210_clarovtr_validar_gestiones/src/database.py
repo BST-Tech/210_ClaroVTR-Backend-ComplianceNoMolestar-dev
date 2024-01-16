@@ -181,7 +181,6 @@ def get_tipificaciones(values, id_empresa_ct):
     values_in = "(" + ", ".join(["'" + valor + "'" for valor in values]) + ")"
     # query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion like '{data_consult}' and t.id_empresa_ct = {id_empresa_ct};"
     query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion in {values_in} and t.id_empresa_ct = {id_empresa_ct};"
-    print(query)
     try:
         db = DatabaseConnection()
         if db.connect():
