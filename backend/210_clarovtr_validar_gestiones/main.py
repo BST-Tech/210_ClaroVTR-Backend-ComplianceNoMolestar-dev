@@ -17,14 +17,10 @@ def run(event, context):
     tipificaciones_list = list(get_all_tipificaciones(datas)) 
     tipificaciones = get_tipificaciones(tipificaciones_list,id_empresa_ct)
     # tipificaciones_dict = dict(tipificaciones)
-    print(f"tipificaciones {tipificaciones}")
-    print(len(tipificaciones))
-    print(f"tipificaciones_list {tipificaciones_list}")
+
     new_tipificaciones_list = [tupla[0] for tupla in tipificaciones]
-    print(f"new_tipificaciones_list {new_tipificaciones_list}")
     for data in datas:
         value_return = validate_information(data, new_tipificaciones_list)
-        print(value_return)
         if value_return['status']:
             # id_tipificacion = tipificaciones_dict.get(data['cod_tipificacion']) #get_tipificaciones(data['cod_tipificacion'],id_empresa_ct)
 

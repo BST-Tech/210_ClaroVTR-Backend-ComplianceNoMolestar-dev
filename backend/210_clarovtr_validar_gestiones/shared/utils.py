@@ -57,9 +57,6 @@ def validate_tipificaciones(value, empresa_ct):
 
 def validate_information(row_value, tipificaciones):
     invalid_rules = []
-    print(f"len(tipificaciones) {len(tipificaciones)}")
-    print(f"row_value['cod_tipificacion'] {row_value['cod_tipificacion']}")
-    print(f"tipificaciones {tipificaciones}")
     # tipificaciones = []
     # tipificaciones = tipificaciones_dict.get(row_value['cod_tipificacion'])#validate_tipificaciones(row_value['cod_tipificacion'], empresa_ct)
     if row_value['canal_o_nombre_EPS'] == "":
