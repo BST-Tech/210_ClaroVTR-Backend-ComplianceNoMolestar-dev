@@ -159,13 +159,13 @@ def update_resumen_lead_carga(upload_code):
         db.close_connection()
     return status
 
-def update_lead_carga(upload_code):
+def update_lead_carga():
     status = 500
     query = "select update_gestiones();"
     try:
         db = DatabaseConnection()
         if db.connect():
-            results = db.execute_query(query, upload_code)
+            results = db.execute_query(query)
             if results:
                 return results
             else:
