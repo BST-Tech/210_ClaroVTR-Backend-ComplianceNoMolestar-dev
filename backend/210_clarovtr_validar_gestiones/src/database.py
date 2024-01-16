@@ -159,11 +159,29 @@ def update_resumen_lead_carga(upload_code):
         db.close_connection()
     return status
 
+def update_lead_carga(upload_code):
+    status = 500
+    query = "select update_gestiones();"
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query, upload_code)
+            if results:
+                return results
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+    return status
+
 def get_tipificaciones(values, id_empresa_ct):
     # data_consult = '%' + value + '%'
     values_in = "(" + ", ".join(["'" + valor + "'" for valor in values]) + ")"
     # query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion like '{data_consult}' and t.id_empresa_ct = {id_empresa_ct};"
     query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion in {values_in} and t.id_empresa_ct = {id_empresa_ct};"
+    print(query)
     try:
         db = DatabaseConnection()
         if db.connect():

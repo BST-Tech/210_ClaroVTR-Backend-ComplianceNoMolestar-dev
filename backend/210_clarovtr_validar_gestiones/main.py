@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from src.database import get_tipificaciones, insert_gestiones, get_data_user, update_resumen_lead_carga
+from src.database import get_tipificaciones,insert_gestiones, get_data_user, update_resumen_lead_carga, update_lead_carga
 from shared.aws_cognito import get_user_by_id
 from shared.utils import generate_load_gestion_code, format_date, validate_information, get_all_tipificaciones
 
@@ -17,8 +17,14 @@ def run(event, context):
     tipificaciones_list = list(get_all_tipificaciones(datas)) 
     tipificaciones = get_tipificaciones(tipificaciones_list,id_empresa_ct)
     # tipificaciones_dict = dict(tipificaciones)
+    print(f"tipificaciones {tipificaciones}")
+    print(len(tipificaciones))
+    print(f"tipificaciones_list {tipificaciones_list}")
+    new_tipificaciones_list = [tupla[0] for tupla in tipificaciones]
+    print(f"new_tipificaciones_list {new_tipificaciones_list}")
     for data in datas:
-        value_return = validate_information(data, tipificaciones_list)
+        value_return = validate_information(data, new_tipificaciones_list)
+        print(value_return)
         if value_return['status']:
             # id_tipificacion = tipificaciones_dict.get(data['cod_tipificacion']) #get_tipificaciones(data['cod_tipificacion'],id_empresa_ct)
 
@@ -65,7 +71,8 @@ def run(event, context):
             }
     elif len(data_error) == 0:
         result = insert_gestiones(data_valid)
-        # result_resumen = update_resumen_lead_carga(codigo_carga);
+        result_resumen = update_resumen_lead_carga(codigo_carga);
+        update_lead_carga()
         return {
             'statusCode': 200,
             'message': "Archivo cargado correctamente",
