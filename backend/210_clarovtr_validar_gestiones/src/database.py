@@ -81,8 +81,11 @@ def insert_gestiones(data):
         campania,
         segundos_llamada,
         operador_id_ejecutivo,
-        id_usuario)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);
+        id_usuario,
+        id_empresa, 
+        id_empresa_ct,
+        id_canal)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s,%s);
         """
     try:
         db = DatabaseConnection()
@@ -128,7 +131,9 @@ def get_element_by_upload_code_group_by(codigo_carga):
 		db.close_connection()
 
 def get_data_user(email_user):
-    query = "select pu.id, pu.id_empresa_ct from perfil_usuario pu join usuario u on u.id = pu.id_usuario where u.email = %s;"
+    query = """select pu.id, pu.id_empresa_ct, ecc.id_empresa from perfil_usuario pu 
+    join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
+    join usuario u on u.id = pu.id_usuario where u.email = %s;"""
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -142,7 +147,7 @@ def get_data_user(email_user):
     finally:
         db.close_connection()
 
-def update_resumen_lead_carga(upload_code):
+def update_insert_resumen_lead_carga(upload_code):
     status = 500
     query = "select insertar_resumen_lead_carga(%s);"
     try:
@@ -159,7 +164,7 @@ def update_resumen_lead_carga(upload_code):
         db.close_connection()
     return status
 
-def update_lead_carga():
+def update_carga_gestiones():
     status = 500
     query = "select update_gestiones();"
     try:
@@ -177,9 +182,7 @@ def update_lead_carga():
     return status
 
 def get_tipificaciones(values, id_empresa_ct):
-    # data_consult = '%' + value + '%'
     values_in = "(" + ", ".join(["'" + valor + "'" for valor in values]) + ")"
-    # query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion like '{data_consult}' and t.id_empresa_ct = {id_empresa_ct};"
     query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion in {values_in} and t.id_empresa_ct = {id_empresa_ct};"
     try:
         db = DatabaseConnection()

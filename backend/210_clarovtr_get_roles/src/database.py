@@ -75,6 +75,7 @@ def get_rol_user(email):
 	join perfil_usuario pu on ecc.id = pu.id_empresa_ct
 	join usuario u on pu.id_usuario = u.id 
 	where u.email = '{email}');""" 
+    print(query)
     try:
         db = DatabaseConnection()
         if db.connect():

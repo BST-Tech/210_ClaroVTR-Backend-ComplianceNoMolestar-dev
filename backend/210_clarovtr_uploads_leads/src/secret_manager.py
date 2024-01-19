@@ -8,5 +8,4 @@ def get_value_secret():
     credentials = client.get_secret_value(
         SecretId = "dev/claroVtrNoMolestar"
     )
-    secretDict = json.loads( credentials['SecretString'] )
-    return  secretDict
+    return  json.loads( credentials['SecretString'] )
