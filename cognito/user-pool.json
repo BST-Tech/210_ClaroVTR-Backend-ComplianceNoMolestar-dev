@@ -1,5 +1,4 @@
 {
-    "Name": "clarovtrNomolestar-userpool",
     "Policies": {
         "PasswordPolicy": {
             "MinimumLength": 8,
@@ -12,7 +11,7 @@
     },
     "DeletionProtection": "ACTIVE",
     "LambdaConfig": {},
-    "SchemaAttributes": [
+    "Schema": [
         {
             "Name": "sub",
             "AttributeDataType": "String",
@@ -241,16 +240,15 @@
         ]
     },
     "MfaConfiguration": "OFF",
-    "EstimatedNumberOfUsers": 19,
     "EmailConfiguration": {
         "ReplyToEmailAddress": "clarovtrnom@bst.cl",
         "EmailSendingAccount": "COGNITO_DEFAULT"
     },
-    "UserPoolTags": {},
-    "Domain": "clarovtrnomolestar",
+    "UserPoolTags": {
+        "BU_COST_CENTRE": "5001"
+    },
     "AdminCreateUserConfig": {
-        "AllowAdminCreateUserOnly": true,
-        "UnusedAccountValidityDays": 7
+        "AllowAdminCreateUserOnly": true
     },
     "UsernameConfiguration": {
         "CaseSensitive": false

@@ -2,29 +2,12 @@ provider "aws" {
   region = "us-west-2"  # Cambia esto a la región deseada
 }
 
-resource "aws_iam_role" "lambda_role" {
-  name = "lambda-nomolestar-clarovtr-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = "sts:AssumeRole",  
-        Effect = "Allow",
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
-      }
-    ]
-  })
-}
-
-resource "aws_lambda_function" "210_clarovtr_create_contact_center" {
-  function_name = "210_clarovtr_create_contact_center"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "clarovtr_get_list_empresas" {
+  function_name = "210_clarovtr_get_list_empresas"
+  role          = "arn:aws:iam::868883634636:role/lambda-nomolestar-clarovtr-role"
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_create_contact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
+  runtime       = "python3.11"
+  filename      = "210_clarovtr_get_list_empresas.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -38,12 +21,12 @@ resource "aws_lambda_function" "210_clarovtr_create_contact_center" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_create_user" {
-  function_name = "210_clarovtr_create_user"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "clarovtr_get_reglas_negocio_by_id" {
+  function_name = "210_clarovtr_get_reglas_negocio_by_id"
+  role          = "arn:aws:iam::868883634636:role/lambda-nomolestar-clarovtr-role"
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_create_user.zip"  # Cambia esto al nombre de tu archivo ZIP
+  runtime       = "python3.11"
+  filename      = "210_clarovtr_get_reglas_negocio_by_id.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -57,12 +40,12 @@ resource "aws_lambda_function" "210_clarovtr_create_user" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_download_historical_leads" {
-  function_name = "210_clarovtr_download_historical_leads"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "clarovtr_count_leads_cooler" {
+  function_name = "210_clarovtr_count_leads_cooler"
+  role          = "arn:aws:iam::868883634636:role/lambda-nomolestar-clarovtr-role"
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_download_historical_leads.zip"  # Cambia esto al nombre de tu archivo ZIP
+  runtime       = "python3.11"
+  filename      = "210_clarovtr_count_leads_cooler.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -76,12 +59,12 @@ resource "aws_lambda_function" "210_clarovtr_download_historical_leads" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_get_historical_leads" {
-  function_name = "210_clarovtr_get_historical_leads"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "clarovtr_list_tipo_evento" {
+  function_name = "210_clarovtr_list_tipo_evento"
+  role          = "arn:aws:iam::868883634636:role/lambda-nomolestar-clarovtr-role"
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_get_historical_leads.zip"  # Cambia esto al nombre de tu archivo ZIP
+  runtime       = "python3.11"
+  filename      = "210_clarovtr_list_tipo_evento.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -95,12 +78,12 @@ resource "aws_lambda_function" "210_clarovtr_get_historical_leads" {
     }
 }
 
-resource "aws_lambda_function" "210_clarovtr_get_info_contact_center" {
-  function_name = "210_clarovtr_get_info_contact_center"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "clarovtr_put_regla_negocio" {
+  function_name = "210_clarovtr_put_regla_negocio"
+  role          = "arn:aws:iam::868883634636:role/lambda-nomolestar-clarovtr-role"
   handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_get_info_contact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
+  runtime       = "python3.11"
+  filename      = "210_clarovtr_put_regla_negocio.zip"  # Cambia esto al nombre de tu archivo ZIP
   timeout       = 60
   memory_size   = 128    
     tracing_config {
@@ -113,365 +96,3 @@ resource "aws_lambda_function" "210_clarovtr_get_info_contact_center" {
         BU_COST_CENTRE = "5001"
     }
 }
-
-resource "aws_lambda_function" "210_clarovtr_get_user" {
-  function_name = "210_clarovtr_get_user"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_get_user.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_insert_tipificaciones" {
-  function_name = "210_clarovtr_insert_tipificaciones"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_insert_tipificaciones.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_last_login" {
-  function_name = "210_clarovtr_last_login"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_last_login.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_list_contact_center" {
-  function_name = "210_clarovtr_list_contact_center"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_list_contact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_list_contact_center_by_id" {
-  function_name = "210_clarovtr_list_contact_center_by_id"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_list_contact_center_by_id.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_list_tipo_contact_center" {
-  function_name = "210_clarovtr_list_tipo_contact_center"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_list_tipo_contact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_put_contact_center" {
-  function_name = "210_clarovtr_put_contact_center"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_put_contact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_session_registration" {
-  function_name = "210_clarovtr_session_registration"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_session_registration.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_uploads_leads" {
-  function_name = "210_clarovtr_uploads_leads"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_uploads_leads.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clarovtr_validar_gestiones" {
-  function_name = "210_clarovtr_validar_gestiones"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clarovtr_validar_gestiones.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_password_reset" {
-  function_name = "210_clavovtr_password_reset"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_password_reset.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_delete_tipificacion" {
-  function_name = "210_clavovtr_delete_tipificacion"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_delete_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_get_conctact_center" {
-  function_name = "210_clavovtr_get_conctact_center"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_get_conctact_center.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_get_roles" {
-  function_name = "210_clavovtr_get_roles"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_get_roles.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_get_tipificaciones_list" {
-  function_name = "210_clavovtr_get_tipificaciones_list"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_get_tipificaciones_list.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_get_tipificacion_by_id" {
-  function_name = "210_clavovtr_get_tipificacion_by_id"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_get_tipificacion_by_id.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_get_users_list" {
-  function_name = "210_clavovtr_get_users_list"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_get_users_list.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_put_tipificacion" {
-  function_name = "210_clavovtr_put_tipificacion"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_put_tipificacion.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
-resource "aws_lambda_function" "210_clavovtr_put_users" {
-  function_name = "210_clavovtr_put_users"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "main.run"  # Cambia esto al nombre de tu archivo Python y función handler
-  runtime       = "python3.9"
-  filename      = "210_clavovtr_put_users.zip"  # Cambia esto al nombre de tu archivo ZIP
-  timeout       = 60
-  memory_size   = 128    
-    tracing_config {
-        mode = "PassThrough"
-    }
-    layers = [
-        "arn:aws:lambda:us-west-2:868883634636:layer:layer-psycopg2-py311:1"
-    ]
-    tags = {
-        BU_COST_CENTRE = "5001"
-    }
-}
-
