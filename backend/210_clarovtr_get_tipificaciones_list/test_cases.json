@@ -10,11 +10,20 @@
             }
         },
         {
-            "name": "Invalid contact center id",
+            "name": "Valid test case 27",
             "data": {
                 "uid": "1448a478-e0d1-70f9-e2d6-984ec0376f1f",
                 "data": {
-                    "empresa_contact_center_id": 3
+                    "empresa_contact_center_id": 27
+                }
+            }
+        },
+        {
+            "name": "Valid test case 34",
+            "data": {
+                "uid": "1448a478-e0d1-70f9-e2d6-984ec0376f1f",
+                "data": {
+                    "empresa_contact_center_id": 34
                 }
             }
         }

@@ -60,9 +60,7 @@ class DatabaseConnection:
 def get_tipificaciones_from_api(ecc_id):
     query = f"""
 	select distinct t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, ecc.id_contact_center, t.activo from tipificacion t join empresa_contact_center ecc
-	on ecc.id = t.id_empresa_ct join perfil_usuario pu 
-	on pu.id_empresa_ct = ecc.id join usuario u 
-	on u.id = pu.id_usuario
+	on ecc.id = t.id_empresa_ct
 	where ecc.id = {ecc_id}"""
     try:
         db = DatabaseConnection()
