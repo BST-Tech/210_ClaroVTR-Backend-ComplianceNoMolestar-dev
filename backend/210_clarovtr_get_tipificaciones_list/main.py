@@ -38,6 +38,7 @@ def main():
         print(test["name"])
         result = run(test["data"], {})
         print(result["statusCode"])
+        print(json.dumps(result, indent=2))
         print("*" * 25)
 
 
