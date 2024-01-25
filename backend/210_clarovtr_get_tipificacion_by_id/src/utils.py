@@ -8,8 +8,8 @@ def element_to_json(data):
                 "nombre_tipificacion": element[2],
                 "contacto": element[3],
                 "venta": element[4],
-                "id_contactCenter": element[5],
-                "id_empresa_ct": element[6],
+                "id_empresa_ct": element[5],
+                "id_contactCenter": element[6],
             }
         )
     return new_data
