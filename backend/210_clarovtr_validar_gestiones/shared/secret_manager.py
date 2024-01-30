@@ -1,12 +1,23 @@
 import boto3
 import json
- 
- 
+import os
+
+
 def get_value_secret():
-    #https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html
-    client = boto3.client('secretsmanager') 
-    credentials = client.get_secret_value(
-        SecretId = "prod/claroVtrNoMolestar"
-    )
-    secretDict = json.loads( credentials['SecretString'] )
-    return  secretDict
+    is_deployed = bool(os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+    testing_for_prod = True
+    if is_deployed:
+        client = boto3.client("secretsmanager")
+        secret_id = os.environ.get("SECRET_NAME", "prod/claroVtrNoMolestar")
+    elif testing_for_prod:
+        session = boto3.Session(profile_name="uw2prod", region_name="us-west-2")
+        client = session.client("secretsmanager")
+        secret_id = "prod/claroVtrNoMolestar"
+    else:
+        client = boto3.client("secretsmanager")
+        secret_id = "dev/claroVtrNoMolestar"
+
+    credentials = client.get_secret_value(SecretId=secret_id)
+    credentials = json.loads(credentials["SecretString"])
+
+    return credentials

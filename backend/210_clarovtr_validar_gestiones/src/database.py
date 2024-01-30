@@ -1,76 +1,78 @@
-import os
-import sys
-from sqlite3 import DatabaseError
 from shared.secret_manager import get_value_secret
+from shared.timeit import timeit
 from src.cognito import get_user_by_id
 import psycopg2
 
+
 class DatabaseConnection:
-	def connect(self):
-		environ = get_value_secret()
-		#print(environ)
-		try:
-			self.connection = psycopg2.connect(
-                dbname= environ['DB_NAME'],
-                user=environ['DB_USERNAME'],
-                password=environ['DB_PASSWORD'],
-				host=environ['DB_HOST'])
-			return self.connection
-		except Exception as e:
-			print(f"Error al conectar a la base de datos: {e}")
-			return None
+    def connect(self):
+        environ = get_value_secret()
+        # print(environ)
+        try:
+            self.connection = psycopg2.connect(
+                dbname=environ["DB_NAME"],
+                user=environ["DB_USERNAME"],
+                password=environ["DB_PASSWORD"],
+                host=environ["DB_HOST"],
+            )
+            return self.connection
+        except Exception as e:
+            print(f"Error al conectar a la base de datos: {e}")
+            return None
 
-	def execute_many_querys(self, query, params:list=None):
-		if self.connection is not None:
-			try:
-				cursor = self.connection.cursor()
-				cursor.executemany(query, params)
-			except Exception as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
-		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+    def execute_many_querys(self, query, params: list = None):
+        if self.connection is not None:
+            try:
+                cursor = self.connection.cursor()
+                cursor.executemany(query, params)
+            except Exception as e:
+                print(f"Error al ejecutar la consulta: {e}")
+                return None
+        else:
+            print("No se ha establecido una conexión a la base de datos.")
+            return None
 
-	def execute_query(self, query, params:str=None):
-		if self.connection is not None:
-			try:
-				cursor = self.connection.cursor()
-				cursor.execute(query, (params,))
-				result = cursor.fetchall()
-				return result
-			# except Exception as e:
-			except psycopg2.Error as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
-		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+    def execute_query(self, query, params: str = None):
+        if self.connection is not None:
+            try:
+                cursor = self.connection.cursor()
+                cursor.execute(query, (params,))
+                result = cursor.fetchall()
+                return result
+            # except Exception as e:
+            except psycopg2.Error as e:
+                print(f"Error al ejecutar la consulta: {e}")
+                return None
+        else:
+            print("No se ha establecido una conexión a la base de datos.")
+            return None
 
-	def execute_like_query(self, query):
-		if self.connection is not None:
-			try:
-				cursor = self.connection.cursor()
-				cursor.execute(query)
-				result = cursor.fetchall()
-				return result
-			# except Exception as e:
-			except psycopg2.Error as e:
-				print(f"Error al ejecutar la consulta: {e}")
-				return None
-		else:
-			print("No se ha establecido una conexión a la base de datos.")
-			return None
+    def execute_like_query(self, query):
+        if self.connection is not None:
+            try:
+                cursor = self.connection.cursor()
+                cursor.execute(query)
+                result = cursor.fetchall()
+                return result
+            # except Exception as e:
+            except psycopg2.Error as e:
+                print(f"Error al ejecutar la consulta: {e}")
+                return None
+        else:
+            print("No se ha establecido una conexión a la base de datos.")
+            return None
 
-	def close_connection(self):
-		if self.connection is not None:
-			self.connection.commit()
-			self.connection.close()
-		else:
-			print("No hay una conexión activa para cerrar.")
+    def close_connection(self):
+        if self.connection is not None:
+            self.connection.commit()
+            self.connection.close()
+        else:
+            print("No hay una conexión activa para cerrar.")
 
+
+@timeit
 def insert_gestiones(data):
-    query ="""
+    query = """
     INSERT INTO public.gestion (
         tipificacion, 
         pcs_salida, 
@@ -95,12 +97,13 @@ def insert_gestiones(data):
         print(f"Error general: {e}")
     finally:
         db.close_connection()
-        
+
+
 def get_element_by_upload_code(codigo_carga):
-    query = '''
+    query = """
     select lc.codigo_carga, lc.created_at, u.nombre ||' ' ||u.apellidos as usuario, lc.pcs_cliente, lc.en_nomolestar, lc.en_cooler  from lead_carga lc
     join perfil_usuario pu on lc.id_usuario = pu.id 
-    join usuario u on pu.id_usuario = u.id where lc.codigo_carga = %s;'''
+    join usuario u on pu.id_usuario = u.id where lc.codigo_carga = %s;"""
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -114,22 +117,25 @@ def get_element_by_upload_code(codigo_carga):
     finally:
         db.close_connection()
 
-def get_element_by_upload_code_group_by(codigo_carga):
-	query = "select * from lead_carga lc where lc.codigo_carga = %s;"
-	try:
-		db = DatabaseConnection()
-		if db.connect():
-			print("conecto")
-			results = db.execute_query(query, codigo_carga)
-			if results:
-				return results
-			else:
-				return None
-	except Exception as e:
-		print(f"Error general: {e}")
-	finally:
-		db.close_connection()
 
+def get_element_by_upload_code_group_by(codigo_carga):
+    query = "select * from lead_carga lc where lc.codigo_carga = %s;"
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            print("conecto")
+            results = db.execute_query(query, codigo_carga)
+            if results:
+                return results
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+
+
+@timeit
 def get_data_user(email_user):
     query = """select pu.id, pu.id_empresa_ct, ecc.id_empresa from perfil_usuario pu 
     join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
@@ -147,6 +153,8 @@ def get_data_user(email_user):
     finally:
         db.close_connection()
 
+
+@timeit
 def update_insert_resumen_lead_carga(upload_code):
     status = 500
     query = "select insertar_resumen_lead_carga(%s);"
@@ -164,6 +172,8 @@ def update_insert_resumen_lead_carga(upload_code):
         db.close_connection()
     return status
 
+
+@timeit
 def update_carga_gestiones():
     status = 500
     query = "select update_gestiones();"
@@ -181,6 +191,8 @@ def update_carga_gestiones():
         db.close_connection()
     return status
 
+
+@timeit
 def get_tipificaciones(values, id_empresa_ct):
     values_in = "(" + ", ".join(["'" + valor + "'" for valor in values]) + ")"
     query = f"select distinct t.tipificacion, t.id from tipificacion t where t.tipificacion in {values_in} and t.id_empresa_ct = {id_empresa_ct};"
@@ -192,14 +204,15 @@ def get_tipificaciones(values, id_empresa_ct):
         return f"Error general: {e}"
     finally:
         db.close_connection()
-        
+
+
 def get_id_ct(uid):
     email = get_user_by_id(uid)
-    query = f'''
-	select pu.id_empresa_ct from perfil_usuario pu 
-	join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
-	join usuario u on u.id = pu.id_usuario
-	where u.email = '{email}';'''
+    query = f"""
+    select pu.id_empresa_ct from perfil_usuario pu 
+    join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
+    join usuario u on u.id = pu.id_usuario
+    where u.email = '{email}';"""
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -212,8 +225,9 @@ def get_id_ct(uid):
         return f"Error general: {e}"
     finally:
         db.close_connection()
-        
-        
+
+
+@timeit
 def get_codigo_carga_gestion(id_empresa_ct):
     query = f"""SELECT g.codigo_carga
     FROM public.gestion g
@@ -234,6 +248,8 @@ def get_codigo_carga_gestion(id_empresa_ct):
         db.close_connection()
     return 500
 
+
+@timeit
 def get_last_codigo_carga_lead(id_empresa_ct):
     query = f"""SELECT lc.codigo_carga
     FROM public.lead_carga lc
@@ -253,5 +269,3 @@ def get_last_codigo_carga_lead(id_empresa_ct):
     finally:
         db.close_connection()
     return 500
-    
-    
