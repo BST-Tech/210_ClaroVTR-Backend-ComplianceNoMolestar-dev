@@ -1,4 +1,5 @@
 import psycopg2
+from shared.timeit import timeit
 from src.secret_manager import get_value_secret
 
 
@@ -29,6 +30,22 @@ class DatabaseConnection:
             print("No se ha establecido una conexión a la base de datos.")
             return None
 
+    def execute_many_querys_alt(self, query, params: list = None):
+        if self.connection is not None:
+            try:
+                cursor = self.connection.cursor()
+                args_str = ",".join(
+                    cursor.mogrify("(%s,%s,%s,%s,%s)", x).decode("utf-8")
+                    for x in params
+                )
+                cursor.execute(query + args_str)
+            except Exception as e:
+                print(f"Error al ejecutar la consulta: {e}")
+                return None
+        else:
+            print("No se ha establecido una conexión a la base de datos.")
+            return None
+
     def execute_query(self, query, params: str = None):
         if self.connection is not None:
             try:
@@ -52,6 +69,7 @@ class DatabaseConnection:
             print("No hay una conexión activa para cerrar.")
 
 
+@timeit
 def insert_leads(data):
     status = 200
     query = """
@@ -68,7 +86,6 @@ def insert_leads(data):
         if db.connect():
             results = db.execute_many_querys(query, data)
             if results:
-                print(results)
                 return results
             else:
                 return None
@@ -79,11 +96,58 @@ def insert_leads(data):
     return status
 
 
+@timeit
+def insert_leads_alt(data):
+    status = 200
+    query = """
+    INSERT INTO public.lead_carga (
+        id_empresa_ct,
+        id_canal,
+        id_usuario,
+        pcs_cliente,
+        codigo_carga)
+        VALUES """
+
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_many_querys_alt(query, data)
+            if results:
+                return results
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+    return status
+
+
+@timeit
 def get_element_by_upload_code(codigo_carga):
     query = """
     select lc.codigo_carga, lc.created_at, u.nombre ||' ' ||u.apellidos as usuario, lc.pcs_cliente, lc.en_nomolestar, lc.en_cooler  from lead_carga lc
     join perfil_usuario pu on lc.id_usuario = pu.id 
     join usuario u on pu.id_usuario = u.id where lc.codigo_carga = %s;"""
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            results = db.execute_query(query, codigo_carga)
+            if results:
+                return results
+            else:
+                return None
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+
+
+@timeit
+def get_element_by_upload_code_alt(codigo_carga):
+    query = """
+    select lc.pcs_cliente, lc.en_nomolestar, lc.en_cooler from lead_carga lc
+    where lc.codigo_carga = %s;"""
     try:
         db = DatabaseConnection()
         if db.connect():
@@ -133,6 +197,7 @@ def get_data_user(email_user):
     return status
 
 
+@timeit
 def update_resumen_lead_carga(upload_code):
     query = "select insertar_resumen_lead_carga(%s);"
     try:
@@ -150,6 +215,7 @@ def update_resumen_lead_carga(upload_code):
     return 500
 
 
+@timeit
 def get_codigo_carga(id_empresa_ct):
     query = f"""SELECT lc.codigo_carga
     FROM lead_carga lc
