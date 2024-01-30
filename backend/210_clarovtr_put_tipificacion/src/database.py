@@ -1,6 +1,4 @@
-from sqlite3 import DatabaseError
 from shared.secret_manager import get_value_secret
-from shared.cognito import get_user_by_id
 import psycopg2
 
 import time
@@ -76,7 +74,7 @@ class DatabaseConnection:
 
 
 def get_tipificacion_by_id(uid, tipificacion_id):
-    email = get_user_by_id(uid)
+    # email = get_user_by_id(uid)
     #    query = f"""
     # select t.id, t.tipificacion, t.nombre_tipificacion, t.contacto, t.venta, t.activo, ecc.id_contact_center from tipificacion t join empresa_contact_center ecc
     # on ecc.id = t.id_empresa_ct join perfil_usuario pu
