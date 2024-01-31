@@ -12,5 +12,20 @@ def run(event, context):
     # data_updated = compare_data(data_event, data_user_list)
 
     result_update = delete_data_tipificaciones(tipificacion_id)
-    print(result_update)
-    return {"statusCode": 200, "message": result_update, "data_updated": data_event}
+    if result_update and result_update.get("ok"):
+        return {
+            "statusCode": 200,
+            "message": result_update.get("msg", "Ok"),
+            "data_updated": data_event,
+        }
+    elif result_update:
+        return {
+            "statusCode": 204,
+            "message": result_update.get("msg", "No se elimino"),
+            "data_updated": data_event,
+        }
+    return {
+        "statusCode": 500,
+        "message": "Ocurrio un error al intentar eliminar la tipificacion.",
+        "data_updated": None,
+    }

@@ -58,8 +58,11 @@ class DatabaseConnection:
             try:
                 cursor = self.connection.cursor()
                 cursor.execute(query, (params,))
+                rowcount = cursor.rowcount
                 cursor.close()
-                return "actualizada correctamente"
+                if rowcount:
+                    return {"ok": True, "msg": "Actualizada correctamente"}
+                return {"ok": False, "msg": "No se modificaron datos"}
             # except Exception as e:
             except psycopg2.Error as e:
                 print(f"Error al ejecutar la consulta: {e}")
@@ -108,6 +111,6 @@ def delete_data_tipificaciones(id):
         if db.connect():
             return db.execute_update(query)
     except Exception as e:
-        return f"Error general: {e}"
+        return {"ok": False, "msg": f"Error general: {e}"}
     finally:
         db.close_connection()
