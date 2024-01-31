@@ -22,7 +22,7 @@ def run(event, context):
         return {
             "statusCode": 204,
             "message": result_update.get("msg", "No se elimino"),
-            "data_updated": data_event,
+            "data_updated": None,
         }
     return {
         "statusCode": 500,
