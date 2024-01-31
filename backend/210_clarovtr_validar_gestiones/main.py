@@ -1,10 +1,14 @@
 import json
 from datetime import datetime
 from shared.timeit import timeit
+import zlib
+import base64
+
 from src.database import (
     get_tipificaciones,
     insert_gestiones,
     get_data_user,
+    insert_gestiones_alt,
     update_insert_resumen_lead_carga,
     update_carga_gestiones,
 )
@@ -20,6 +24,10 @@ from shared.utils import (
 
 @timeit
 def run(event, context):
+    encoded_data = event["data"]
+    decoded_data = base64.b64decode(encoded_data)
+    decompressed_data = zlib.decompress(decoded_data, 16 + zlib.MAX_WBITS)
+    event = json.loads(decompressed_data.decode("utf-8"))
     datas = event["data"]
     data_valid = []
     data_error = []
@@ -91,9 +99,9 @@ def run(event, context):
         else:
             return {"statusCode": 400, "data": data_error}
     elif len(data_error) == 0:
-        # insert_gestiones(data_valid)
-        # update_carga_gestiones()
-        # update_insert_resumen_lead_carga(codigo_carga)
+        insert_gestiones_alt(data_valid)
+        update_carga_gestiones()
+        update_insert_resumen_lead_carga(codigo_carga)
         return {
             "statusCode": 200,
             "message": "Archivo cargado correctamente",
@@ -104,7 +112,7 @@ def run(event, context):
 def main():
     import json
 
-    with open("test_case.json", "r") as f:
+    with open("gestiones_5k.json", "r") as f:
         data = json.load(f)
 
     result = run(data, {})

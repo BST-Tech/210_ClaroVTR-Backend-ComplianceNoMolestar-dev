@@ -32,6 +32,24 @@ class DatabaseConnection:
             print("No se ha establecido una conexión a la base de datos.")
             return None
 
+    def execute_many_querys_alt(self, query, params: list = None):
+        if self.connection is not None:
+            try:
+                cursor = self.connection.cursor()
+                args_str = ",".join(
+                    cursor.mogrify(
+                        "(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", x
+                    ).decode("utf-8")
+                    for x in params
+                )
+                cursor.execute(query + args_str)
+            except Exception as e:
+                print(f"Error al ejecutar la consulta: {e}")
+                return None
+        else:
+            print("No se ha establecido una conexión a la base de datos.")
+            return None
+
     def execute_query(self, query, params: str = None):
         if self.connection is not None:
             try:
@@ -93,6 +111,34 @@ def insert_gestiones(data):
         db = DatabaseConnection()
         if db.connect():
             db.execute_many_querys(query, data)
+    except Exception as e:
+        print(f"Error general: {e}")
+    finally:
+        db.close_connection()
+
+
+@timeit
+def insert_gestiones_alt(data):
+    query = """
+    INSERT INTO public.gestion (
+        tipificacion, 
+        pcs_salida, 
+        pcs_cliente,
+        fecha_llamada, 
+        codigo_carga, 
+        canal_o_nombre_eps,
+        campania,
+        segundos_llamada,
+        operador_id_ejecutivo,
+        id_usuario,
+        id_empresa, 
+        id_empresa_ct,
+        id_canal)
+        VALUES """
+    try:
+        db = DatabaseConnection()
+        if db.connect():
+            db.execute_many_querys_alt(query, data)
     except Exception as e:
         print(f"Error general: {e}")
     finally:
