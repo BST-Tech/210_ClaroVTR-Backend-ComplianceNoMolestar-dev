@@ -81,18 +81,20 @@ def run(event, context):
                 {"pcs": pcs, "error": "PCS no cumple con las reglas de negocio"}
             )
             print("PCS con error")
-    result_insert = insert_leads(pcs_data_to_storage)
-    # result_insert = insert_leads_alt(pcs_data_to_storage)
+    # result_insert = insert_leads(pcs_data_to_storage)
+    result_insert = insert_leads_alt(pcs_data_to_storage)
     result_update_lc = update_resumen_lead_carga(id_code_uploads)
     print(result_insert, result_update_lc)
 
-    data_result_upload_daily = get_element_by_upload_code(id_code_uploads)
+    # nota: esta query parece solo leer datos. Por ahora desactivar
+    # data_result_upload_daily = get_element_by_upload_code(id_code_uploads)
 
     if not error:
         return {
             "statusCode": 200,
             "message": "Archivo cargado correctamente",
-            "body": data_response(data_result_upload_daily),
+            # "body": data_response(data_result_upload_daily),
+            "body": f"{len(pcs_data_to_storage)} entradas insertadas",
             # "body": data_response_alt(data_result_upload_daily_alt),
         }
     else:
