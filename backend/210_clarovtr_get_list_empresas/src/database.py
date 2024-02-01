@@ -62,7 +62,7 @@ class DatabaseConnection:
 def get_users_list(uid):
     email = get_user_by_id(uid)
     query = """
-	select p.id, u.nombre, u.apellidos, u.email, cc.id, u.activo as estado, p.id_rol ,r.nombre as rol, cc.nombre as nombre_contact_center, e.nombre as nombre_empresa
+	select p.id, u.nombre, u.apellidos, u.email, cc.id, u.activo as estado, p.id_rol ,r.nombre as rol, cc.nombre as nombre_contact_center, e.nombre as nombre_empresa, p.id_empresa_ct
 		from perfil_usuario p
 		join empresa_contact_center ecc on p.id_empresa_ct = ecc.id
 		join contact_center cc on ecc.id_contact_center = cc.id
