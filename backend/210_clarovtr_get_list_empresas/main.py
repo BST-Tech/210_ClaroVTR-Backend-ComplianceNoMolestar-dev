@@ -5,7 +5,9 @@ from src.database import get_users_list
 
 def run(event, context):
     uid = event["uid"]
-    data_user_list = get_users_list(uid)
+    email = event.get("email")
+
+    data_user_list = get_users_list(uid, email)
     if data_user_list and len(data_user_list) > 0:
         return {"statusCode": 200, "data": element_to_json(data_user_list)}
     else:
