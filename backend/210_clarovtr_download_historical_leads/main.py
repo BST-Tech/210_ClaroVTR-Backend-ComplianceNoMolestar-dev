@@ -26,10 +26,10 @@ def data_response(data_result_upload_daily):
         validation_result = ""
         if data[4] == 0 and data[5] == 0:
             validation_result = "OK PARA LLAMAR"
-        elif data[4] == 1 and data[5] == 0:
-            validation_result = "NO LLAMAR - NO MOLESTAR"
         elif data[4] == 0 and data[5] == 1:
             validation_result = "NO LLAMAR - BLOQUEO TEMPORAL"
+        elif data[4] == 1:
+            validation_result = "NO LLAMAR - NO MOLESTAR"
         results.append(
             {"TELEFONO A VALIDAR": data[3], "RESULTADO VALIDACION": validation_result}
         )
