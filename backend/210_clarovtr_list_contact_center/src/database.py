@@ -89,7 +89,7 @@ def get_list_contact_center(uid):
 	tcc.tipo_operador,
 	cc.rut,
 	cc.razon_social,
-	ecc.activo
+	cc.activo
 from empresa_contact_center ecc
 join contact_center cc on ecc.id_contact_center = cc.id
 join tipo_contact_center tcc on cc.id_tipo = tcc.id
