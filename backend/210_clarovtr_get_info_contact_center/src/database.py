@@ -90,7 +90,7 @@ def get_data_contact_center(email, id_ct):
 		max(cc.activo) as cc_activo, max(g.loaded_at) as last_load
 	from perfil_usuario pu
 	join usuario u on pu.id_usuario = u.id
-	left join lead_carga lc on lc.id_usuario = u.id
+	left join lead_carga lc on lc.id_usuario = pu.id
 	join empresa_contact_center ecc on pu.id_empresa_ct = ecc.id
 	join contact_center cc on ecc.id_contact_center = cc.id
 	left join (select g.id_lead_carga , max(g.loaded_at) as loaded_at
